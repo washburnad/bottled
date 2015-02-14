@@ -1,8 +1,42 @@
+/*  STRUCTURAL */
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background: #48516a; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #48516a 0%, #252732 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#48516a), color-stop(100%,#252732)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #48516a 0%,#252732 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #48516a 0%,#252732 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #48516a 0%,#252732 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, #48516a 0%,#252732 100%); /* W3C */
+	background-size: 100%;
+
+	font-color: #607196;
+
+}
+
+nav.navbar-default {
+	border-radius: 0;
+	background-color: rgba(0,0,0,0.2);
+	
+	font-color: #607196;
+	border: 1px solid #000000;
+	box-shadow: rgba(0,0,0,0.92) 9px 6px 8px;
+
+	
+	
+}
+
+
 /*	MAIN FEATURES */
 
 .float-box {
-	background-color: rgba(0,0,0,0.2);
 	border: 1px solid #111111;
 	border-radius: 10px;
+
+	font-color: #607196;
 
 }
