@@ -14,6 +14,7 @@
 		    </div>
 		    <div class='col-xs-6'>
 		      <ul class="nav navbar-nav pull-right">
+		      	<li><%= link_to 'Clients', clients_path %></li>
 		        <% if current_user %>
 		        	<li><%= link_to current_user.email, '#' %></li>
 		        <% else %>

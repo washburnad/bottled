@@ -1,0 +1,10 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+	<h1><%= @client.name %></h1>
+	<ul>
+		<li>Contact Name:<%= @client.contact_name %></li>
+		<li>Title:<%= @client.contact_title %></li>
+		<li>Email:<%= @client.contact_email %></li>
+		<li>Phone:<%= @client.contact_phone %></li>
+	</ul>
+	<%= link_to 'Edit', edit_client_path(@client), :class => 'btn btn-primary' %>
+</div>
