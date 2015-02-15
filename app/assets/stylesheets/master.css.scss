@@ -46,6 +46,22 @@ p, h1, h2, h3, h4, h5, h6 {
 	color: #607196;
 }
 
+ul {
+	list-style-type: none;
+}
+
+.btn-primary {
+	color: #607196;
+	background-color: #252732;
+	border-color: #48516a;
+}
+
+.btn-primary:hover {
+	color: #607196;
+	background-color: #48516a;
+}
+
+
 /*	MAIN FEATURES */
 
 .float-box {
@@ -57,4 +73,13 @@ p, h1, h2, h3, h4, h5, h6 {
 	
 	font-color: #607196;
 
+}
+
+form input {
+	width: 90%;
+	margin: 2px 5%;
+	background-color: #252732;
+	&[type='submit'] {
+		width: 60px;
+	}
 }

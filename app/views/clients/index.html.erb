@@ -1,14 +1,15 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<h1>Clients</h1>
 	<% @clients.each do |client| %>
-		<div class='client-box'>	
-			<ul>
-				<li><%= link_to client.name, client_path(client) %></li>
-				<li>Contact Name:<%= client.contact_name %></li>
+		<div class='item-box'>	
+			<h2><%= link_to client.name, client_path(client) %></h2>
+				<!-- <li>Contact Name:<%= client.contact_name %></li>
 				<li>Title:<%= client.contact_title %></li>
 				<li>Email:<%= client.contact_email %></li>
-				<li>Phone:<%= client.contact_phone %></li>
-			</ul>
+				<li>Phone:<%= client.contact_phone %></li> -->
+			
 		</div>
+
 	<% end %>
+	<%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>
 </div>
