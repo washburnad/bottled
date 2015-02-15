@@ -1,0 +1,8 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+	<h1>New Project for <%= current_client.name %></h1>
+	<%= simple_form_for @project, :url => client_projects_path(current_client) do |f| %>
+		<%= f.input :name, label: false, placeholder: 'Project Name' %>
+		<%= f.input :description, label: false, placeholder: 'Description' %>
+		<%= f.submit 'Save', :class => 'btn btn-primary' %>
+	<% end %>
+</div>
