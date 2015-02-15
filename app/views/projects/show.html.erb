@@ -1,0 +1,11 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+	<h1><%= current_client.name %><span class='h1-small'> : <%= @project.name %></span></h1>
+	<ul>
+		<li>Project Name:<%= @project.name %></li>
+		<li>Description:<%= @project.description %></li>
+	</ul>
+	<%= link_to 'Edit', edit_client_project_path(current_client, @project), :class => 'btn btn-primary' %>
+	<%= link_to 'New Project', new_client_project_path(current_client), :class => 'btn btn-primary' %>
+	<%= link_to 'Projects', client_projects_path(current_client), :class => 'btn btn-primary' %>
+	<%= link_to 'New Task', '#', :class => 'btn btn-primary' %>
+</div>

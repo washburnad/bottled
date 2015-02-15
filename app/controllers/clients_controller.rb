@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
 	end
 
 	def create
-		@client = Client.create(client_params)
+		@client = current_user.clients.create(client_params)
 		if @client.valid?
 			redirect_to client_path(@client)
 		else
