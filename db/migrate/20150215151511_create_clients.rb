@@ -7,8 +7,6 @@ class CreateClients < ActiveRecord::Migration
     	t.string :contact_phone
     	t.string :contact_title
 
-    	add_index :clients, :name 
-
       t.timestamps
     end
   end
