@@ -42,12 +42,16 @@ nav.navbar-default {
 /* GLOBAL STYLES */
 
 p, h1, h2, h3, h4, h5, h6 {
-	font-family: 'Armata-Regular';
+	font-family: 'Armata-Regular', sans-serif;
 	color: #607196;
 }
 
 ul {
 	list-style-type: none;
+}
+
+a:hover {
+	text-decoration: none;
 }
 
 .btn-primary {
@@ -61,6 +65,21 @@ ul {
 	background-color: #48516a;
 }
 
+.nav-link {
+	font-size: 16px;
+	color: #607196;
+	&:hover {
+		color: #48516a;
+	}
+
+}
+
+.vert-list {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 
 /*	MAIN FEATURES */
 
@@ -70,8 +89,20 @@ ul {
 	box-shadow: rgba(0,0,0,0.92) 9px 6px 8px;
 
 	padding: 20px;
-	
-	font-color: #607196;
+
+}
+
+.item-box {
+	margin: 5px 30px;
+	a {
+		color: #607196;
+
+		&:hover {
+			color: #48516a;
+		}
+	}
+
+
 
 }
 
@@ -79,6 +110,7 @@ form input {
 	width: 90%;
 	margin: 2px 5%;
 	background-color: #252732;
+	border: none;
 	&[type='submit'] {
 		width: 60px;
 	}
