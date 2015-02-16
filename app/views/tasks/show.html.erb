@@ -7,17 +7,69 @@
 	<%= link_to 'Edit', edit_project_task_path(current_project, @task), :class => 'btn btn-primary' %>
 	<%= link_to 'New Task', new_project_task_path(current_project), :class => 'btn btn-primary' %>
 	<%= link_to 'Tasks', project_tasks_path(current_project), :class => 'btn btn-primary' %>
-	<%= link_to 'Start Task', '#', :id => 'start-task', :class => 'btn btn-primary', 'data-starttime' => '0' %>
+	<%= link_to 'Start Task', '#', :id => 'start', :class => 'btn btn-primary', 'data-create-url' => task_events_path(@task) %>
 	
 </div>
 
+<div class='timer-box col-xs-6 col-xs-offset-3'>
+	<div class='inner-box'>
+		<div class='pause'>
+			<%= link_to 'Pause', '#' %>
+		</div>
+		<div id='time' class='time center'>
+			Time
+		</div>
+		<div class='stop'>
+			<a id='stop' 'data-create-url'=<%= task_events_path(@task) %> 'data-elapsedtime' = '' > Stop </a>
+		</div>
+	</div>
+</div>
+<script>
 
-+	<%= link_to 'Start Task', '#', :id => 'start-task', :class => 'btn btn-primary', 'data-starttime' => '0' %>
-+	
-+</div>
-+
-+<script>
-+	$( "#start-task" ).click(function( e ) {
-+	  this.dataset.starttime = Date.now();
-+	});
-+</script>
+	var startElement = $('#start');
+	var stopElement = $('#stop');
+	var timeElement = $('#time');
+	var elapsedTime = 0;
+
+	function showTime(startTime) {
+			var time = Date.now();
+			elapsedTime = (time - startTime);
+			stopElement.data('elapsedtime', elapsedTime);
+			
+			var h = Math.floor( elapsedTime/(60 * 60 * 1000));
+			elapsedTime -= (h * 60 * 60 * 1000);
+			var m = Math.floor( (elapsedTime)/(60 * 1000));
+			elapsedTime -= (m * 60 * 1000);
+			var s = Math.floor( elapsedTime/1000 );
+			timeElement.innerHTML = h+':'+m+':'+s;
+	    t = setTimeout(function () {
+	        showTime(startTime)
+	    }, 500);
+	}
+
+	startElement.click(function( e ) {
+		var startTime = Date.now();
+		$('.timer-box').addClass('active');
+	  showTime(startTime);
+	  alert( startTime );
+	  $.ajax({
+		          type: 'POST',
+		          url: startElement.data('create-url'),
+		          dataType: 'json',
+		          data: { taskEvent: { start_time: startTime } }
+		        });
+	});
+
+	stopElement.click(function( e ) {
+		e.preventDefault()
+		alert( stopElement.data('elapsedtime') );
+		$.ajax({
+		          type: 'PUT',
+		          url: stopElement.data('update-url'),
+		          dataType: 'json',
+		          data: { lesson: { row_order_position: ui.item.index() } }
+		        });
+
+	});
+
+</script>
