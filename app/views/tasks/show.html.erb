@@ -7,4 +7,17 @@
 	<%= link_to 'Edit', edit_project_task_path(current_project, @task), :class => 'btn btn-primary' %>
 	<%= link_to 'New Task', new_project_task_path(current_project), :class => 'btn btn-primary' %>
 	<%= link_to 'Tasks', project_tasks_path(current_project), :class => 'btn btn-primary' %>
+	<%= link_to 'Start Task', '#', :id => 'start-task', :class => 'btn btn-primary', 'data-starttime' => '0' %>
+	
 </div>
+
+
++	<%= link_to 'Start Task', '#', :id => 'start-task', :class => 'btn btn-primary', 'data-starttime' => '0' %>
++	
++</div>
++
++<script>
++	$( "#start-task" ).click(function( e ) {
++	  this.dataset.starttime = Date.now();
++	});
++</script>
