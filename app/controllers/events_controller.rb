@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.create(event_params)
-		render :text => 'updated'
+		render :partial => 'event', :object => @event
 	end
 
 	private
