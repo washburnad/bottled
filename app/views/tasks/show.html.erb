@@ -20,7 +20,7 @@
 			0:00:00
 		</div>
 		<div class='stop'>
-			<a id='stop' 'data-create-url'=<%= task_events_path(@task) %> 'data-elapsedtime' = '' > Stop </a>
+			<%= link_to 'Stop', '#', :id => 'stop', 'data-update-url' => '', :remote => true %>
 		</div>
 	</div>
 </div>
@@ -57,18 +57,20 @@
 		          type: 'POST',
 		          url: startElement.data('create-url'),
 		          dataType: 'json',
-		          data: { event: { start_time: startTime, name: (new Date().toJSON().slice(0,10) ) } }
+		          data: { event: { start_time: startTime, name: (new Date().toJSON().slice(0,10) ) } },
+		          success: function(data) { 
+		          	stopElement.data('update-url', data.update_url);}
 		        });
 	});
 
 	stopElement.click(function( e ) {
 		e.preventDefault()
-		alert( stopElement.data('elapsedtime') );
+		var endTime = Math.floor(Date.now()/1000);
 		$.ajax({
 		          type: 'PUT',
 		          url: stopElement.data('update-url'),
 		          dataType: 'json',
-		          data: { lesson: { row_order_position: ui.item.index() } }
+		          data: { event: { end_time: endTime, duration: elapsedTime } }
 		        });
 
 	});
