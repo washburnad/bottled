@@ -4,6 +4,7 @@
 		<li>Project Name:<%= @project.name %></li>
 		<li>Description:<%= @project.description %></li>
 	</ul>
+	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'Edit', edit_client_project_path(current_client, @project), :class => 'btn btn-primary' %>
 	<%= link_to 'New Project', new_client_project_path(current_client), :class => 'btn btn-primary' %>
 	<%= link_to 'Projects', client_projects_path(current_client), :class => 'btn btn-primary' %>
