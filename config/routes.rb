@@ -4,7 +4,7 @@ Bottled::Application.routes.draw do
   resources :clients do
     resources :projects
   end
-  resources :projects, :only => [] do
+  resources :project, :only => [] do
     resources :tasks
   end  
 
