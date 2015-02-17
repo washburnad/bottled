@@ -1,16 +1,16 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<% if current_user %>
-		<%= link_to 'Recent Clients', clients_path, :class => 'nav-link vert-list' %>
+		<h2><%= link_to 'Recent Clients', clients_path, :class => 'nav-link vert-list' %></h2>
 		<% @clients.each do |client| %>
-			<%= client.name %><br />
+			<h3><%= link_to client.name, client_path(client), :class => 'nav-link vert-list' %><h3>
 		<% end %>
-		<%= link_to 'Recent Projects', '#', :class => 'nav-link vert-list' %>
+		<h2><%= link_to 'Recent Projects', '#', :class => 'nav-link vert-list' %></h3>
 		<% @projects.each do |project| %>
-			<%= project.name %><br />
+			<h3><%= link_to project.name, client_project_path( project.client , project ), :class => 'nav-link vert-list' %></h3>
 		<% end %>
-		<%= link_to 'Recent Tasks', '#', :class => 'nav-link vert-list' %>
+		<h2><%= link_to 'Recent Tasks', '#', :class => 'nav-link vert-list' %></h2>
 		<% @tasks.each do |task| %>
-			<%= task.name %><br />
+			<h3><%= link_to task.name, project_task_path( task.project, task ), :class => 'nav-link vert-list' %></h3>
 		<% end %>
 		<%= link_to 'Generate Reports', '#', :class => 'nav-link vert-list' %>
 	<% else %>
