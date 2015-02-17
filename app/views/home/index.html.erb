@@ -1,8 +1,17 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<% if current_user %>
-		<%= link_to 'Clients', clients_path, :class => 'nav-link vert-list' %>
-		<%= link_to 'Projects', '#', :class => 'nav-link vert-list' %>
-		<%= link_to 'Tasks', '#', :class => 'nav-link vert-list' %>
+		<%= link_to 'Recent Clients', clients_path, :class => 'nav-link vert-list' %>
+		<% @clients.each do |client| %>
+			<%= client.name %><br />
+		<% end %>
+		<%= link_to 'Recent Projects', '#', :class => 'nav-link vert-list' %>
+		<% @projects.each do |project| %>
+			<%= project.name %><br />
+		<% end %>
+		<%= link_to 'Recent Tasks', '#', :class => 'nav-link vert-list' %>
+		<% @tasks.each do |task| %>
+			<%= task.name %><br />
+		<% end %>
 		<%= link_to 'Generate Reports', '#', :class => 'nav-link vert-list' %>
 	<% else %>
 		<%= link_to 'Sign In', new_user_session_path, :class => 'nav-link vert-list' %>
