@@ -13,7 +13,7 @@
 
 <div class='clr'></div>
 
-<div class='timer-box'>
+<div class='timer-box active'>
 	<div class='inner-box'>
 		<div class='pause'>
 			<%= link_to '#', :id => 'pause', 'data-update-url' => '', :remote => true do %>
@@ -29,37 +29,53 @@
 			<% end %>
 			
 		</div>
+		<div>
+			<%= @event.name %>
+		</div>
 	</div>
 </div>
 <script>
-
+	// initiate global variables
 	var startElement = $('#start');
 	var stopElement = $('#stop');
 	var timeElement = $('#time');
 	var elapsedTime = 0;
 
+	// function to display current elapsed time, updated every 500ms
 	function showTime(startTime) {
+			// get current time in seconds
 			var time = Math.floor(Date.now()/1000);
 			elapsedTime = (time - startTime);
-			stopElement.data('elapsedtime', elapsedTime);
 			
+			// get hours, minutes, seconds and format them for display
+			// and update HTML
 			var h = Math.floor( elapsedTime/(60 * 60));
 			elapsedTime -= (h * 60 * 60);
 			var m = Math.floor( (elapsedTime)/(60));
 			elapsedTime -= (m * 60);
 			var s = Math.floor( elapsedTime );
 
+			m = ( m < 10 ) ? '0' + m : m;
+			s = ( s < 10 ) ? '0' + s : s;
 			var timeString = h+':'+m+':'+s;
-			timeElement.innerHTML = timeString;
+			timeElement.html(timeString);
+
+			// set timer to repeat recursively
 	    t = setTimeout(function () {
 	        showTime(startTime)
 	    }, 500);
 	}
 
+
+	// Initiate a timer event
 	startElement.click(function( e ) {
+		// display timer-box
 		$('.timer-box').addClass('active');
+		// get current time in s
 		var startTime = Math.floor(Date.now()/1000);
+		// initiate timer display
 		showTime(startTime);
+		// send post request to create event.  retrieve update url and assign it to the stopElement
 	  $.ajax({
 		          type: 'POST',
 		          url: startElement.data('create-url'),
@@ -70,14 +86,22 @@
 		        });
 	});
 
+
+	// End a timer event
 	stopElement.click(function( e ) {
-		e.preventDefault()
+		//e.preventDefault()
+		// get current time in s
 		var endTime = Math.floor(Date.now()/1000);
+
+		// send put request to update event attributes.  on success end timer
 		$.ajax({
 		          type: 'PUT',
 		          url: stopElement.data('update-url'),
 		          dataType: 'json',
-		          data: { event: { end_time: endTime, duration: elapsedTime } }
+		          data: { event: { end_time: endTime, duration: elapsedTime } },
+		          success: function() {
+		          	clearTimeout(t);
+		          }
 		        });
 
 	});

@@ -11,6 +11,7 @@ class TasksController < ApplicationController
 
 	def show
 		@task = Task.find(params[:id])
+		@event = @task.events.new
 	end
 
 	def create
