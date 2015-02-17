@@ -83,6 +83,10 @@ a:hover {
 h1 .h1-small {
 	font-size: 60%;
 }
+
+.clr {
+	clear: both;
+}
 /*	MAIN FEATURES */
 
 .float-box {
@@ -124,9 +128,10 @@ h1 .h1-small {
 	background: radial-gradient(ellipse at center, #48516a 0%,#252732 100%); /* W3C */
 	background-size: 100%;
 
-	height: 54px;
-	width: 180px;
-	margin-top: 20px;
+	position: relative;
+	height: 74px;
+	width: 280px;
+	margin: 40px auto;
 	padding: 10px;
 	border: none;
 	border-radius: 8px;
@@ -148,32 +153,31 @@ h1 .h1-small {
 	
 	.inner-box {
 		position: relative; 
-		height: 34px;
-		width: 160px;
+		height: 54px;
+		width: 260px;
 		margin: 0;
+		font-size: 28px;
 
 		background-color: #252732;
-		.pause, 
-		.stop {
-			position: absolute;
-			font-size: 8px;
-		
-			top: 10px;
-			text-align: center;
-			-webkit-transform: rotate(-90deg);
-			transform: rotate(-90deg);
+	
+		div {
+			height: 100%;
+			padding: 7px 10px;
+			display: inline-block;
 		}
 
 		.pause {
-			left: 0;
+			float: left;
 		}
-
 		.stop {
-			right: 0;
+			float: right;
 		}
 
 		.time {
-			margin: auto;
+			position: absolute;
+			width: 100%;
+			left: 0;
+			text-align: center;
 		}
 
 	}

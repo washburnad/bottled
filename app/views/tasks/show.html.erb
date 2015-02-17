@@ -11,16 +11,23 @@
 	
 </div>
 
-<div class='timer-box col-xs-6 col-xs-offset-3'>
+<div class='clr'></div>
+
+<div class='timer-box'>
 	<div class='inner-box'>
 		<div class='pause'>
-			<%= link_to 'Pause', '#' %>
+			<%= link_to '#', :id => 'pause', 'data-update-url' => '', :remote => true do %>
+			    <span class="glyphicon glyphicon-pause"></span>
+			<% end %>
 		</div>
 		<div id='time' class='time center'>
 			0:00:00
 		</div>
 		<div class='stop'>
-			<%= link_to 'Stop', '#', :id => 'stop', 'data-update-url' => '', :remote => true %>
+			<%= link_to '#', :id => 'stop', 'data-update-url' => '', :remote => true do %>
+			    <i class="glyphicon glyphicon-stop"></i>
+			<% end %>
+			
 		</div>
 	</div>
 </div>
