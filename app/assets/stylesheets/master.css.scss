@@ -61,7 +61,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-	color: #607196;
+	color: #ffffff;
 	background-color: #48516a;
 }
 
@@ -87,6 +87,10 @@ h1 .h1-small {
 .clr {
 	clear: both;
 }
+
+.inactive {
+	visibility: hidden;
+}
 /*	MAIN FEATURES */
 
 .float-box {
@@ -99,8 +103,9 @@ h1 .h1-small {
 	a {
 		color: #607196;
 
-		&:hover {
-			color: #48516a;
+		&:hover,
+		&:selected, {
+			color: #ffffff;
 		}
 	}
 

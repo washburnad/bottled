@@ -69,8 +69,9 @@
 
 	// Initiate a timer event
 	startElement.click(function( e ) {
-		// display timer-box
+		// display timer-box, hide startElement
 		$('.timer-box').addClass('active');
+		startElement.addClass('inactive');
 		// get current time in s
 		var startTime = Math.floor(Date.now()/1000);
 		// initiate timer display
@@ -93,7 +94,7 @@
 		// get current time in s
 		var endTime = Math.floor(Date.now()/1000);
 
-		// send put request to update event attributes.  on success end timer
+		// send put request to update event attributes.  on success end timer and display start button
 		$.ajax({
 		          type: 'PUT',
 		          url: stopElement.data('update-url'),
@@ -101,6 +102,7 @@
 		          data: { event: { end_time: endTime, duration: elapsedTime } },
 		          success: function() {
 		          	clearTimeout(t);
+		          	startElement.removeClass('inactive');
 		          }
 		        });
 
