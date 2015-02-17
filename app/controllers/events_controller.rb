@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 		@event = current_task.events.create(event_params)
 		
 		render :json => {
-				:update_url => task_event_path(@task, @event)
+				:update_url => task_event_path(current_task, @event)
 				}
 	end
 

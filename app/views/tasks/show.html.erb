@@ -1,8 +1,7 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1><%= @task.name %><span class='h1-small'> : <%= link_to current_client.name, client_projects_path(current_client) %> : <%= link_to current_project.name, project_tasks_path(current_project) %></span></h1>
-	<ul>
-		<li>Task Name:<%= @task.name %></li>
-	</ul>
+	<h1><%= @task.name %>
+	<h3><%= link_to current_client.name, client_projects_path(current_client) %> : <%= link_to current_project.name, project_tasks_path(current_project) %></h3>
+	
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'Edit', edit_project_task_path(current_project, @task), :class => 'btn btn-primary' %>
 	<%= link_to 'New Task', new_project_task_path(current_project), :class => 'btn btn-primary' %>

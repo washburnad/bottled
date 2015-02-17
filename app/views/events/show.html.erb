@@ -1,36 +1,18 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<h1><%= link_to @event.name, task_event_path(current_task, @event) %></h1>
-	<h2><%= link_to current_task.name, project_task_path(current_project, current_task) %> : <%= link_to current_project.name, client_project_path(current_client, current_project) %> : <%= link_to current_client.name, client_projects_path(current_client) %> </h2>
+	<h3><%= link_to current_task.name, project_task_path(current_project, current_task) %> : <%= link_to current_project.name, client_project_path(current_client, current_project) %> : <%= link_to current_client.name, client_projects_path(current_client) %> </h3>
 	<ul>
-		<li>Event Name:<%= @event.name %></li>
-		<li>Event Duration:<%= @event.duration %></li>
+		<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
+			<%= f.input  :name %>
+			<%= f.input  :duration %>
+			<%= f.input  :start_time %>
+			<%= f.input  :end_time %>
+		<% end %>
 	</ul>
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 
 	
 </div>
 
-<div class='clr'></div>
 
-<div class='timer-box active'>
-	<div class='inner-box'>
-		<div class='pause'>
-			<%= link_to '#', :id => 'pause', 'data-update-url' => '', :remote => true do %>
-			    <span class="glyphicon glyphicon-pause"></span>
-			<% end %>
-		</div>
-		<div id='time' class='time center'>
-			0:00:00
-		</div>
-		<div class='stop'>
-			<%= link_to '#', :id => 'stop', 'data-update-url' => '', :remote => true do %>
-			    <i class="glyphicon glyphicon-stop"></i>
-			<% end %>
-			
-		</div>
-		<div>
-			<%= @event.name %>
-		</div>
-	</div>
-</div>
 

@@ -1,5 +1,6 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1><%= link_to @project.name, project_tasks_path(@project) %><span class='h1-small'> : <%= link_to current_client.name, client_path(current_client) %></span></h1>
+	<h1><%= link_to @project.name, project_tasks_path(@project) %></h1>
+	<h3><%= link_to current_client.name, client_path(current_client) %></h3>
 	<ul>
 		<li>Project Name:<%= @project.name %></li>
 		<li>Description:<%= @project.description %></li>
