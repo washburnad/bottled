@@ -1,6 +1,6 @@
 
 $(document).ready( function() {
-
+	
 	// initiate global variables
 	var startElement = $('#start');
 	var stopElement = $('#stop');

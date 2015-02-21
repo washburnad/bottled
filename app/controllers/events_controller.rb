@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
 	def index
-		@events = current_task.events.all
+		@events = current_task.events.order('created_at DESC').all
 	end
 
 	def create
@@ -20,9 +20,7 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		@event.update_attributes(event_params)
 
-		render :json => {
-				:event_id => @event.id
-		}
+		redirect_to task_events_path(current_task)
 	end
 
 	private
