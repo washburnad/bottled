@@ -6,6 +6,14 @@ $(document).on('ready page:load', function() {
 	var timeElement = $('#time');
 	var elapsedTime = 0;
 
+	function getCurrentDateTimeString() {
+		dateTime = new Date()
+		dateString = dateTime.toDateString()
+		timeString = dateTime.toTimeString().slice(0,5)
+		str = dateString + " " + timeString
+		return str
+	}
+
 	// function to display current elapsed time, updated every 500ms
 	function showTime(startTime) {
 			// get current time in seconds
@@ -46,7 +54,7 @@ $(document).on('ready page:load', function() {
 		          type: 'POST',
 		          url: startElement.data('create-url'),
 		          dataType: 'json',
-		          data: { event: { start_time: startTime, name: (new Date().toTimeString() ) } },
+		          data: { event: { start_time: startTime, name: getCurrentDateTimeString() } },
 		          success: function(data) { 
 		          	stopElement.data('update-url', data.update_url);}
 		        });

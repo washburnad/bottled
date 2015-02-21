@@ -5,13 +5,12 @@
 	
 	<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
 		
-		<ul>
-			<%= f.input  :name %>
-			<%= f.input  :duration %>
-			<%= f.input  :start_time %>
-			<%= f.input  :end_time %>
+		<%= f.input  :name %></li>
+		<%= f.input  :duration, :label => 'Duration in seconds' %>
+		Start Time: <%= time_to_string(@event.start_time) %><br />
+		End Time: <%= time_to_string(@event.end_time) %><br />
 		
-		</ul>
+		
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= f.submit 'Save', :class => 'btn btn-primary' %>
 	<% end %>

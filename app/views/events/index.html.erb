@@ -4,7 +4,7 @@
 	<h2 class='highlight'><%= link_to current_task.name, project_task_path(current_project, current_task) %></h2>
 	<% @events.each do |event| %>
 		<div class='item-box'>	
-			<h2><%= link_to event.name, task_event_path(current_task, event) %>
+			<h2><%= link_to event.name, task_event_path(current_task, event) %></h2>
 		</div>
 	<% end %>	
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>

@@ -42,6 +42,12 @@ class EventsController < ApplicationController
 		@current_client ||= Client.find(current_project.client_id)
 	end
 
+	helper_method :time_to_string
+	# convert time in seconds to a string
+	def time_to_string(time)
+		Time.at(time)
+	end
+
 	def event_params
 		params.require(:event).permit(:name, :description, :start_time, :end_time, :duration)
 	end
