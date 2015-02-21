@@ -1,5 +1,8 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1>Edit Task</h1>
+	<h1 class='highlight'><%= link_to current_client.name, client_path(current_client) %></h1>
+	<h2 class='highlight'><%= link_to current_project.name, client_project_path(current_client, current_project) %></h2>
+	
+	<h2 class='highlight' >Edit Task</h2>
 	<h3><%= current_client.name %> : <%= current_project.name %></h3>
 	<%= simple_form_for @task, :url => project_task_path(current_project, @task), :method => :put do |f| %>
 		<%= f.input :name, label: false, placeholder: 'Task Name' %>

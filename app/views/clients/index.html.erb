@@ -1,9 +1,8 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1>Clients</h1>
+	<h1 class='highlight'>Clients</h1>
 	<% @clients.each do |client| %>
 		<div class='item-box'>	
-			<h2><%= link_to client.name, client_path(client) %></h2>
-			
+			<h3><%= link_to client.name, client_path(client) %></h3>
 		</div>
 
 	<% end %>
