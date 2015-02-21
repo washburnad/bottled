@@ -1,11 +1,18 @@
 
-$(document).ready( function() {
-
+$(document).on('ready page:load', function() {
 	// initiate global variables
 	var startElement = $('#start');
 	var stopElement = $('#stop');
 	var timeElement = $('#time');
 	var elapsedTime = 0;
+
+	function getCurrentDateTimeString() {
+		dateTime = new Date()
+		dateString = dateTime.toDateString()
+		timeString = dateTime.toTimeString().slice(0,5)
+		str = dateString + " " + timeString
+		return str
+	}
 
 	// function to display current elapsed time, updated every 500ms
 	function showTime(startTime) {
@@ -47,7 +54,7 @@ $(document).ready( function() {
 		          type: 'POST',
 		          url: startElement.data('create-url'),
 		          dataType: 'json',
-		          data: { event: { start_time: startTime, name: (new Date().toJSON().slice(0,10) ) } },
+		          data: { event: { start_time: startTime, name: getCurrentDateTimeString() } },
 		          success: function(data) { 
 		          	stopElement.data('update-url', data.update_url);}
 		        });
@@ -59,7 +66,6 @@ $(document).ready( function() {
 		//e.preventDefault()
 		// get current time in s
 		var endTime = Math.floor(Date.now()/1000);
-
 		// send put request to update event attributes.  on success end timer and display start button
 		$.ajax({
 		          type: 'PUT',

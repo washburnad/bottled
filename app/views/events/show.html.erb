@@ -1,16 +1,19 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1><%= link_to @event.name, task_event_path(current_task, @event) %></h1>
-	<h3><%= link_to current_task.name, project_task_path(current_project, current_task) %> : <%= link_to current_project.name, client_project_path(current_client, current_project) %> : <%= link_to current_client.name, client_projects_path(current_client) %> </h3>
-	<ul>
-		<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
-			<%= f.input  :name %>
-			<%= f.input  :duration %>
-			<%= f.input  :start_time %>
-			<%= f.input  :end_time %>
-		<% end %>
-	</ul>
+	<h1 class='highlight'><%= link_to current_client.name, client_path(current_client) %></h1>
+	<h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
+	<h2 class='highlight'><%= link_to current_task.name, project_task_path(current_project, current_task) %></h2>
+	
+	<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
+		
+		<%= f.input  :name %></li>
+		Duration: <%= time_in_h_mm(@event.duration) %><br />
+		Start Time: <%= time_to_string(@event.start_time) %><br />
+		End Time: <%= time_to_string(@event.end_time) %><br />
+		
+		
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-
+	<%= f.submit 'Save', :class => 'btn btn-primary' %>
+	<% end %>
 	
 </div>
 

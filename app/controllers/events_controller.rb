@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
 	def index
-		@events = current_task.events.all
+		@events = current_task.events.order('created_at DESC').all
 	end
 
 	def create
@@ -21,8 +21,8 @@ class EventsController < ApplicationController
 		@event.update_attributes(event_params)
 
 		render :json => {
-				:event_id => @event.id
-		}
+				:update_url => task_event_path(current_task, @event)
+				}
 	end
 
 	private
@@ -41,6 +41,8 @@ class EventsController < ApplicationController
 	def current_client
 		@current_client ||= Client.find(current_project.client_id)
 	end
+
+	
 
 	def event_params
 		params.require(:event).permit(:name, :description, :start_time, :end_time, :duration)
