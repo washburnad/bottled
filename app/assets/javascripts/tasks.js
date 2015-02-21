@@ -6,13 +6,6 @@ $(document).on('ready page:load', function() {
 	var timeElement = $('#time');
 	var elapsedTime = 0;
 
-	function getCurrentDateTimeString() {
-		dateTime = new Date()
-		dateString = dateTime.toDateString()
-		timeString = dateTime.toTimeString().slice(0,5)
-		str = dateString + " " + timeString
-		return str
-	}
 
 	// function to display current elapsed time, updated every 500ms
 	function showTime(startTime) {
@@ -49,12 +42,13 @@ $(document).on('ready page:load', function() {
 		var startTime = Math.floor(Date.now()/1000);
 		// initiate timer display
 		showTime(startTime);
+
 		// send post request to create event.  retrieve update url and assign it to the stopElement
 	  $.ajax({
 		          type: 'POST',
 		          url: startElement.data('create-url'),
 		          dataType: 'json',
-		          data: { event: { start_time: startTime, name: getCurrentDateTimeString() } },
+		          data: { event: { start_time: startTime } },
 		          success: function(data) { 
 		          	stopElement.data('update-url', data.update_url);}
 		        });
@@ -66,12 +60,16 @@ $(document).on('ready page:load', function() {
 		//e.preventDefault()
 		// get current time in s
 		var endTime = Math.floor(Date.now()/1000);
+		// get name of event from input
+		eventName = document.getElementById('name').value
+
 		// send put request to update event attributes.  on success end timer and display start button
+
 		$.ajax({
 		          type: 'PUT',
 		          url: stopElement.data('update-url'),
 		          dataType: 'json',
-		          data: { event: { end_time: endTime, duration: elapsedTime } },
+		          data: { event: { end_time: endTime, duration: elapsedTime, name: eventName } },
 		          success: function() {
 		          	clearTimeout(t);
 		          	startElement.removeClass('inactive');
