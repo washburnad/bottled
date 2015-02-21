@@ -1,6 +1,5 @@
 
-$(document).ready( function() {
-	
+$(document).on('ready page:load', function() {
 	// initiate global variables
 	var startElement = $('#start');
 	var stopElement = $('#stop');
@@ -47,7 +46,7 @@ $(document).ready( function() {
 		          type: 'POST',
 		          url: startElement.data('create-url'),
 		          dataType: 'json',
-		          data: { event: { start_time: startTime, name: (new Date().toJSON().slice(0,10) ) } },
+		          data: { event: { start_time: startTime, name: (new Date().toTimeString() ) } },
 		          success: function(data) { 
 		          	stopElement.data('update-url', data.update_url);}
 		        });
@@ -59,7 +58,6 @@ $(document).ready( function() {
 		//e.preventDefault()
 		// get current time in s
 		var endTime = Math.floor(Date.now()/1000);
-
 		// send put request to update event attributes.  on success end timer and display start button
 		$.ajax({
 		          type: 'PUT',

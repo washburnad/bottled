@@ -20,7 +20,9 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		@event.update_attributes(event_params)
 
-		redirect_to task_events_path(current_task)
+		render :json => {
+				:update_url => task_event_path(current_task, @event)
+				}
 	end
 
 	private
