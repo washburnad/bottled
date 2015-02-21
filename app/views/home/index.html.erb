@@ -1,18 +1,18 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<% if current_user %>
-		<h2><%= link_to 'Recent Clients', clients_path, :class => 'nav-link vert-list' %></h2>
+		<h1><%= link_to 'Recent Clients', clients_path, :class => 'nav-link vert-list' %></h1>
 		<% @clients.each do |client| %>
-			<h3><%= link_to client.name, client_path(client), :class => 'nav-link vert-list' %><h3>
+			<h2 class='highlight'><%= link_to client.name, client_path(client), :class => 'nav-link vert-list' %><h2>
 		<% end %>
-		<h2><%= link_to 'Recent Projects', '#', :class => 'nav-link vert-list' %></h3>
+		<h1><%= link_to 'Recent Projects', '#', :class => 'nav-link vert-list' %></h1>
 		<% @projects.each do |project| %>
-			<h3><%= link_to project.name, client_project_path( project.client , project ), :class => 'nav-link vert-list' %></h3>
+			<h2 class='highlight'><%= link_to project.name, client_project_path( project.client , project ), :class => 'nav-link vert-list' %></h2>
 		<% end %>
-		<h2><%= link_to 'Recent Tasks', '#', :class => 'nav-link vert-list' %></h2>
+		<h1><%= link_to 'Recent Tasks', '#', :class => 'nav-link vert-list' %></h1>
 		<% @tasks.each do |task| %>
-			<h3><%= link_to task.name, project_task_path( task.project, task ), :class => 'nav-link vert-list' %></h3>
+			<h2 class='highlight'><%= link_to task.name, project_task_path( task.project, task ), :class => 'nav-link vert-list' %></h2>
 		<% end %>
-		<%= link_to 'Generate Reports', '#', :class => 'nav-link vert-list' %>
+		<h1><%= link_to 'Generate Reports', '#', :class => 'nav-link vert-list' %></h1>
 	<% else %>
 		<%= link_to 'Sign In', new_user_session_path, :class => 'nav-link vert-list' %>
 		<%= link_to 'Sign Up', new_user_registration_path, :class => 'nav-link vert-list' %>

@@ -6,7 +6,7 @@
 	<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
 		
 		<%= f.input  :name %></li>
-		<%= f.input  :duration, :label => 'Duration in seconds' %>
+		Duration: <%= time_in_h_mm(@event.duration) %><br />
 		Start Time: <%= time_to_string(@event.start_time) %><br />
 		End Time: <%= time_to_string(@event.end_time) %><br />
 		
