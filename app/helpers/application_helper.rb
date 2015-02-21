@@ -3,7 +3,7 @@ module ApplicationHelper
 	# convert time in seconds to a string
 	def time_to_string(time)
 		if !time.nil?
-			Time.at(time)
+			Time.at(time).strftime("%Y-%m-%d %H:%M")
 		else
 			"Unknown"
 		end
@@ -13,7 +13,7 @@ module ApplicationHelper
 	# converts seconds to a H:MM
 	def time_in_h_mm(seconds)
 		if !seconds.nil?
-			Time.at(seconds).utc.strftime("%H:%M")
+			Time.at(seconds).strftime("%H:%M")
 		else
 			"00:00"
 		end
