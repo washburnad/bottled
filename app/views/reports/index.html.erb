@@ -1,0 +1,12 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+	<h1 class='highlight'>Reports</h1>
+	<h2>Report type: &nbsp;
+		<select name='report-type'>
+		<% report_options.each do |option| %>
+			<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %></option>
+		<% end %>
+		</select>
+	</h2>
+	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+	<%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>
+</div>

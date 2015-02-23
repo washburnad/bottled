@@ -84,6 +84,18 @@ a:hover {
 .btn-primary:hover {
 	color: #ffffff;
 	background-color: #48516a;
+	border-color: #607196;
+}
+
+select,
+select:focus {
+	background-color: #333748;
+	border: none;
+
+}
+
+:focus {
+	outline: none;
 }
 
 /*.nav-link {
