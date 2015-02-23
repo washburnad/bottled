@@ -1,0 +1,7 @@
+<h2>Client: &nbsp;
+	<select name='clients-select' id='clients-select'>
+		<% @clients.each do |client| %>
+			<option value='client_<%= client.id %>'><%= client.name %></option>
+		<% end %>
+	</select>
+</h2>

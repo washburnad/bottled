@@ -1,0 +1,7 @@
+<h2>Project: &nbsp;
+	<select name='projects-select' id='projects-select'>
+		<% @projects.each do |project| %>
+			<option value='project<%= project.id %>'><%= project.name %></option>
+		<% end %>
+	</select>
+</h2>
