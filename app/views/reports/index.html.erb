@@ -5,8 +5,37 @@
 		<% report_options.each do |option| %>
 			<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %></option>
 		<% end %>
-		</select>
+		</select>	
 	</h2>
+	<%= render 'clients_select' %>
+	
+	<% if show_projects %>
+		<%= render 'projects_select' %>
+	<% end %>
+
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>
 </div>
+
+<script>
+$(document).on('ready page:load', function() { 
+	$('#clients-select').change( function () {
+		alert('selection changed!');
+		var client_id = 2;
+	  $.ajax({
+		          type: 'put',
+		          url: 'report/query',
+		          dataType: 'json',
+		          data: { client_id: client_id },
+		          success: function(data) { 
+		          	alert('success');}
+		        });
+
+		  
+	});
+
+
+});
+
+
+</script>
