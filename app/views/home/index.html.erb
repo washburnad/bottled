@@ -20,7 +20,10 @@
 			<% end %>
 		</div>
 		<div class='col-xs-12 col-sm-6'>
-			<h1><%= link_to 'Generate Reports', '#', :class => 'nav-link vert-list' %></h1>
+			<h1><%= link_to 'Generate Reports', reports_path, :class => 'nav-link vert-list' %></h1>
+			<h2 class='highlight'><%= link_to 'Client', reports_path( type: 'client'), :class => 'nav-link vert-list' %></h2>
+			<h2 class='highlight'><%= link_to 'Project', reports_path( type: 'project'), :class => 'nav-link vert-list' %></h2>
+			<h2 class='highlight'><%= link_to 'User', reports_path( type: 'user'), :class => 'nav-link vert-list' %></h2>
 		</div>
 		<div class='clr'></div>
 		
