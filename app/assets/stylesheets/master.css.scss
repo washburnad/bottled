@@ -102,6 +102,10 @@ option:disabled {
 	color: $gray;
 }
 
+select {
+	width: 50%;
+}
+
 :focus {
 	outline: none;
 }
