@@ -1,5 +1,9 @@
 
 /*  STRUCTURAL */
+$dark-blue: #48516a;
+$light-blue: #607196;
+$white: #ffffff;
+$gray: #888888;
 
 html, body {
 	height: 100%;
@@ -92,6 +96,10 @@ select:focus {
 	background-color: #333748;
 	border: none;
 
+}
+
+option:disabled {
+	color: $gray;
 }
 
 :focus {

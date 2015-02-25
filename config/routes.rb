@@ -3,7 +3,6 @@ Bottled::Application.routes.draw do
   root 'home#index'
   get 'reports' => 'reports#index'
   get 'report/:id' => 'reports#show', as: 'report'
-  put 'report/query' => 'reports#query', as: 'report_query'
   resources :clients do
     resources :projects
   end

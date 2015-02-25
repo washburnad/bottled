@@ -1,21 +1,15 @@
 class ReportsController < ApplicationController
 	def index
 		@clients = Client.all
-		@projects = Project.all
-		@type = type_param[:type]
-	end
+		@type = report_params[:type]
+		if report_params[:client_id]
+			@projects = Client.find( report_params[:client_id] ).projects.all
 
-
-	def query
-		puts query_params
-		if query_params[:client_id]
-			@projects = Client.find( query_params[:client_id]).projects.all
-			render :json => '@projects'
-		elsif query_params[:project_id]
-			@tasks = Project.find( query_params[:project_id]).tasks.all 
-			render :json => '@tasks'
+			respond_to do |format|
+			  format.html { render :partial => 'projects_select' }
+			end
 		else
-			render :text => 'unprocessable_entity', :status => :unprocessable_entity
+			# @projects = Project.all
 		end
 	end
 
@@ -38,12 +32,8 @@ class ReportsController < ApplicationController
 		return true
 	end
 
-	def query_params
-		@query_params = params.permit( :client_id, :project_id )
-	end
-
-	def type_param
-		@type_param = params.permit(:type)
+	def report_params
+		@report_params = params.permit(:type, :client_id, :project_id)
 	end
 
 

@@ -1,17 +1,18 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<h1 class='highlight'>Reports</h1>
-	<h2>Report type: &nbsp;
+	<h2>
 		<select name='report-type'>
 		<% report_options.each do |option| %>
-			<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %></option>
+			<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %> Report</option>
 		<% end %>
 		</select>	
 	</h2>
 	<%= render 'clients_select' %>
-	
-	<% if show_projects %>
-		<%= render 'projects_select' %>
-	<% end %>
+	<div id='projects-select'>
+		<% if @projects %>
+			<%= render 'projects_select' %>
+		<% end %>
+	</div>
 
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>
@@ -20,15 +21,14 @@
 <script>
 $(document).on('ready page:load', function() { 
 	$('#clients-select').change( function () {
-		alert('selection changed!');
-		var client_id = 2;
-	  $.ajax({
-		          type: 'put',
-		          url: 'report/query',
-		          dataType: 'json',
+		var client_id = $("#clients-select").val();
+		$.ajax({
+		          type: 'get',
+		          url: 'reports',
+		          dataType: 'html',
 		          data: { client_id: client_id },
 		          success: function(data) { 
-		          	alert('success');}
+		          	$('#projects-select').html( data );}
 		        });
 
 		  
