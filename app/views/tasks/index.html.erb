@@ -1,9 +1,12 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'><%= link_to current_client.name, client_path(current_client) %></h1>
-	<h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
+	<h1 class='highlight'>
+		<%= link_to current_client.name, client_path(current_client) %>
+  	<span class="glyphicon" style=" color: <%= current_client.glyph_color %>;	"><%= raw current_client.glyph_id %></span>
+  </h1>
+  <h2 class='highlight'><%= link_to current_project.name, client_project_path(current_client, current_project) %></h2>
 	<% @tasks.each do |task| %>
 		<div class='item-box'>	
-			<h3><%= link_to task.name, project_task_path(current_project, task) %></h3
+			<h3><%= link_to task.name, project_task_path(current_project, task) %></h3>
 		</div>
 	<% end %>	
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>

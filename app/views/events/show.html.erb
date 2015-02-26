@@ -1,5 +1,5 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'><%= link_to current_client.name, client_path(current_client) %></h1>
+	<h1 class='highlight'><%= link_to current_client.name, client_projects_path(current_client) %></h1>
 	<h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
 	<h2 class='highlight'><%= link_to current_task.name, project_task_path(current_project, current_task) %></h2>
 	
