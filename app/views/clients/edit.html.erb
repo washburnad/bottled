@@ -6,7 +6,7 @@
 		<%= f.input :contact_email %>
 		<%= f.input :contact_phone %>
 		<%= f.input :contact_title %>
-		<%= f.input :glyph_color %>
+		<%= f.input :glyph_color, :as => :minicolors %>
 		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 		<%= f.submit 'Save', :class => 'btn btn-primary' %>
 
