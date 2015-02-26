@@ -2,7 +2,7 @@
 	<h1 class='highlight'>Clients</h1>
 	<% @clients.each do |client| %>
 		<div class='item-box'>	
-			<h3><%= link_to client.name, client_path(client) %></h3>
+			<h3><%= link_to client.name, client_projects_path(client) %></h3>
 		</div>
 
 	<% end %>
