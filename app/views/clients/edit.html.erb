@@ -6,6 +6,10 @@
 		<%= f.input :contact_email %>
 		<%= f.input :contact_phone %>
 		<%= f.input :contact_title %>
+		<%= f.input :glyph_id do %>
+		  <%= f.select :glyph_id, (10..99).each { |n| [ "&#xE0#{n};", "&#xE0#{n};" ] }, include_blank: true %>
+		<% end %>
+		<%= f.input :glyph_color %>
 		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 		<%= f.submit 'Save', :class => 'btn btn-primary' %>
 
