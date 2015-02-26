@@ -120,15 +120,19 @@ select {
 }*/
 
 .vert-list {
-	display: block;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	line-height: 0.7;
+	overflow: hidden;
 }
 
 h1 .h1-small {
 	font-size: 60%;
 }
 
+.glyphicon {
+	display: inline;
+}
 .clr {
 	clear: both;
 }

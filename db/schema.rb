@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216205612) do
+ActiveRecord::Schema.define(version: 20150226142745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20150216205612) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.text     "glyph_id",      default: "&#xE022;"
+    t.text     "glyph_color",   default: "#c48219"
   end
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
