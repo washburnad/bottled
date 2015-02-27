@@ -17,23 +17,6 @@ class ReportsController < ApplicationController
 
 	private
 
-	helper_method :report_options
-	def report_options
-		types = [ 'Client' , 'Project' , 'Task' , 'User' ]
-		options = []
-		types.each do |t|
-			selected = (t.downcase == @type)? "selected='selected'" : " "
-			options << [ t , t.downcase , selected ]
-		end
-		return options
-	end
-
-	
-	helper_method :show_projects
-	def show_projects
-		return true
-	end
-
 	def report_params
 		@report_params = params.permit(:type, :client_id, :project_id)
 	end
