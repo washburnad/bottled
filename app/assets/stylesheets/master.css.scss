@@ -136,9 +136,12 @@ h1 .h1-small {
 
 .glyphicon {
 	display: inline;
-	font-size: 60%;
-	margin-right: 5px;
+	padding: 2px;
+	background-color: $white;
+	border-radius: 3px;
+
 }
+
 .clr {
 	clear: both;
 }
