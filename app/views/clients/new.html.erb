@@ -7,6 +7,14 @@
 		<%= f.input :contact_email, label: false, placeholder: 'Contact Email' %>
 		<%= f.input :contact_phone, label: false, placeholder: 'Contact Phone' %>
 		<%= f.input :glyph_color, label: false, placeholder: 'Glyphicon color (hex)', :as => :minicolors %>
+		<input type='radio' name='client[glyph_id]' value='&#x2709;' /><span class='glyphicon'>&#x2709;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE022;' /><span class='glyphicon'>&#xE022;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE021;' /><span class='glyphicon'>&#xE021;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE034;' /><span class='glyphicon'>&#xE034;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE041;' /><span class='glyphicon'>&#xE041;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE044;' /><span class='glyphicon'>&#xE044;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE056;' /><span class='glyphicon'>&#xE056;</span>
+		<input type='radio' name='client[glyph_id]' value='&#xE103;' /><span class='glyphicon'>&#xE103;</span><br />
 		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 		<%= f.submit 'Save', :class => 'btn btn-primary' %>
 	<% end %>

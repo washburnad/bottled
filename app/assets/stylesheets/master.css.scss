@@ -4,13 +4,14 @@ $dark-blue: #48516a;
 $light-blue: #607196;
 $white: #ffffff;
 $gray: #888888;
+$black: #000000;
 
 html, body {
 	height: 100%;
 }
 
 body {
-	background: #48516a; /* Old browsers */
+	background: $dark-blue; /* Old browsers */
 	background: -moz-radial-gradient(center, ellipse cover, #48516a 0%, #252732 100%); /* FF3.6+ */
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#48516a), color-stop(100%,#252732)); /* Chrome,Safari4+ */
 	background: -webkit-radial-gradient(center, ellipse cover, #48516a 0%,#252732 100%); /* Chrome10+,Safari5.1+ */
@@ -28,16 +29,16 @@ nav.navbar-default {
 	border-radius: 0;
 	background-color: rgba(0,0,0,0.2);
 	
-	font-color: #607196;
-	border: 1px solid #000000;
+	font-color: $light-blue;
+	border: 1px solid $black;
 	box-shadow: rgba(0,0,0,0.92) 9px 6px 8px;
 
 	.navbar-brand {
-		color: #607196;
+		color: $light-blue;
 	}
 
 	.navbar-nav > li > a {
-		color: #607196;
+		color: $light-blue;
 	}
 	
 	
@@ -47,7 +48,7 @@ nav.navbar-default {
 
 p, h1, h2, h3, h4, h5, h6 {
 	font-family: 'Armata-Regular', sans-serif;
-	color: #607196;
+	color: $light-blue;
 }
 
 h1 {
@@ -67,10 +68,10 @@ ul {
 }
 
 a {
-	color: #607196;
+	color: $light-blue;
 
 	&:hover {
-		color: #48516a;
+		color: $dark-blue;
 	}	
 }
 
@@ -80,19 +81,19 @@ a:hover {
 
 .highlight,
 .highlight a {
-	color: #ffffff;
+	color: $white;
 }
 
 .btn-primary {
-	color: #607196;
+	color: $light-blue;
 	background-color: #252732;
-	border-color: #48516a;
+	border-color: $dark-blue;
 }
 
 .btn-primary:hover {
-	color: #ffffff;
-	background-color: #48516a;
-	border-color: #607196;
+	color: $white;
+	background-color: $dark-blue;
+	border-color: $light-blue;
 }
 
 select,
@@ -137,7 +138,7 @@ h1 .h1-small {
 .glyphicon {
 	display: inline;
 	padding: 2px;
-	background-color: $white;
+	/*background-color: $white;*/
 	border-radius: 3px;
 
 }
@@ -163,10 +164,10 @@ h1 .h1-small {
 .item-box {
 	margin: 5px 30px;
 	a {
-		color: #607196;
+		color: $light-blue;
 
 		&:hover {
-			color: #48516a;
+			color: $dark-blue;
 		}
 	}
 
@@ -237,18 +238,39 @@ h1 .h1-small {
 	}
 }
 
-form input {
-	width: 90%;
-	margin: 2px 5%;
-	background-color: #252732;
-	border: none;
-	&[type='submit'] {
-		width: 60px;
+form{
+
+	input {
+		width: 90%;
+		margin: 2px 5%;
+		background-color: #252732;
+		border: none;
+		&[type='submit'] {
+			width: 60px;
+		}
+		&[type='radio'] {
+			width: 10px;
+			display: inline;
+			&:first-child {
+				margin-left: 5%;
+			}
+		}
+
+
+	}
+
+	.minicolors-theme-default.minicolors {
+		width: 100%;
+	}
+
+	.minicolors-swatch {
+		margin-left: 5%;
+	}
+
+	.glyphicon {
+		font-size: 200%;
 	}
 
 }
 
-form .minicolors-theme-default.minicolors {
-	width: 100%;
-}
 
