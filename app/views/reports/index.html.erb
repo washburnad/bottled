@@ -1,18 +1,21 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
 	<h1 class='highlight'>Reports</h1>
 	<h2>
-		<select name='report-type'>
+		<select id='report-type' name='report-type'>
 		<% report_options.each do |option| %>
 			<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %> Report</option>
 		<% end %>
 		</select>	
 	</h2>
-	<%= render 'clients_select' %>
-	<div id='projects-select'>
-		<% if @projects %>
-			<%= render 'projects_select' %>
-		<% end %>
+	<div id='clients-select-div' >
+		<%= render 'clients_select' %>
 	</div>
+	<div id='projects-select-div'>
+		<select id='projects-select'></select>
+	</div>
+	<div id='tasks-select-div'>
+	</div>	
+	
 
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>
@@ -28,12 +31,53 @@ $(document).on('ready page:load', function() {
 		          dataType: 'html',
 		          data: { client_id: client_id },
 		          success: function(data) { 
-		          	$('#projects-select').html( data );}
+		          	$('#projects-select-div').html( data );}
 		        });
 
-		  
 	});
 
+	$('#projects-select').change( function () {
+		alert('projects-select');
+		var project_id = $("#projects-select").val();
+		$.ajax({
+		          type: 'get',
+		          url: 'reports',
+		          dataType: 'html',
+		          data: { project_id: project_id },
+		          success: function(data) { 
+		          	$('#tasks-select-div').html( data );}
+		        });
+
+	});
+
+	$('#report-type').change( function () {
+		display_menus ( $('#report-type').val() );
+	});
+
+	function display_menus( report_type ) {
+		switch (report_type) {
+			case 'user':
+				$('#clients-select').hide();
+				$('#projects-select-div').html(" ");
+				$('#tasks-select-div').html(" ");
+				break ;
+			case 'client':
+				$('#clients-select').show();
+				$('#projects-select-div').html(" ");
+				$('#tasks-select-div').html(" ");
+				break;
+			case 'project':
+				$('#clients-select').show();
+				$('#tasks-select-div').html(" ");
+				break;
+			case 'task':
+				$('#clients-select').show();
+				break;
+		};
+
+	}
+
+	display_menus( $('#report-type').val() )
 
 });
 

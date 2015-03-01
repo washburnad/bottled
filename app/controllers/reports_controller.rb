@@ -10,9 +10,14 @@ class ReportsController < ApplicationController
 			respond_to do |format|
 			  format.html { render :partial => 'projects_select' }
 			end
-		else
-			# @projects = Project.all
+		elsif report_params[:project_id]
+			@tasks = current_user.clients.projects.find( report_params[:project_id] ).tasks.all? 
+
+			respond_to do |format|
+				format.html { render :partial => 'tasks_select' }
+			end
 		end
+
 	end
 
 	private

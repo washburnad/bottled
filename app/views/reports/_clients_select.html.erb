@@ -1,6 +1,6 @@
 <h2>
 	<select name='clients-select' id='clients-select'>
-		<option value='' disabled='disabled' selected='selected'>Client...</option>
+		<option value='' disabled='disabled' selected='selected'>Select client...</option>
 		<% @clients.each do |client| %>
 			<option value='<%= client.id %>'><%= client.name %></option>
 		<% end %>
