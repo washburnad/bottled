@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
 	private
 
 	def report_params
-		@report_params = params.permit(:type, :client_id, :project_id)
+		@report_params = params.permit(:type, :client_id, :project_id, :task_id, :start_date, :end_date)
 	end
 
 
