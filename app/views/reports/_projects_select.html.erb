@@ -1,8 +1,8 @@
-<h2>
+<h3>
 	<select name='projects-select' id='projects-select'>
 		<option value='' disabled='disabled' selected='selected'>Select project...</option>
 		<% @projects.each do |project| %>
 			<option value='<%= project.id %>'><%= project.name %></option>
 		<% end %>
 	</select>
-</h2>
+</h3>

@@ -31,9 +31,12 @@
 			</div>
 			<div class='col-xs-12 col-sm-6'>
 				<h1><%= link_to 'Reports', reports_path, :class => 'nav-link ' %></h1>
-				<h3 class='highlight'><%= link_to 'Client Report', reports_path( type: 'client'), :class => 'nav-link vert-list' %></h3>
-				<h3 class='highlight'><%= link_to 'Project Report', reports_path( type: 'project'), :class => 'nav-link vert-list' %></h3>
-				<h3 class='highlight'><%= link_to 'User Report', reports_path( type: 'user'), :class => 'nav-link vert-list' %></h3>
+				<% @reports.each do |report| %>
+					<h3 class='highlight'>
+						<span class="glyphicon" style=" color: <%= report.reportable.glyph_color %>;	"><%= raw report.reportable.glyph_id %></span>
+						<%= link_to report.name, report_path( report ), :class => 'nav-link vert-list' %>
+					</h3>
+				<% end %>
 			</div>
 			<div class='clr'></div>
 		</div>
