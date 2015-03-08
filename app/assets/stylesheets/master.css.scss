@@ -108,7 +108,11 @@ option:disabled {
 }
 
 select {
-	width: 50%;
+	width: 90%;
+}
+
+input[type='date'] {
+	width: 45%;
 }
 
 :focus {

@@ -9,6 +9,14 @@ module ApplicationHelper
 		end
 	end
 
+	def time_to_html_value(time)
+		if !time.nil?
+			Time.at(time).strftime("%Y-%m-%d")
+		else
+			"Unknown"
+		end
+	end
+
 	# helper_method :time_in_h_mm
 	# converts seconds to a H:MM
 	def time_in_h_mm(seconds)

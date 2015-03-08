@@ -1,26 +1,37 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'>Reports</h1>
-	<h2>
-		<select id='report-type' name='report-type'>
-		<% report_options.each do |option| %>
-			<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %> Report</option>
+	<div class='col-xs-6'>
+		<h1 class='highlight'>Reports</h1>
+		<% @reports.each do |report| %>
+			<h3 class='highlight'>
+				<%= link_to report.name, report_path( report ), :class => 'nav-link vert-list' %>
+			</h3>
 		<% end %>
-		</select>	
-	</h2>
-	<input type='date' name='start_date' />
-	<input type='date' name='end_date' />
-	<div id='clients-select-div' >
-		<%= render 'clients_select' %>
 	</div>
-	<div id='projects-select-div'>
-	</div>
-	<div id='tasks-select-div'>
-	</div>	
-	
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= link_to 'Generate Report', '#', :class => 'generate-report-link btn btn-primary' %>
-</div>
 
+	<div class='col-xs-6'>
+		<h1 class='highlight'>New Report</h1>
+		<h2>
+			<select id='report-type' name='report-type'>
+			<% report_options.each do |option| %>
+				<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %> Report</option>
+			<% end %>
+			</select>	
+		</h2>
+		<input type='date' name='start_date' value='<%= time_to_html_value(Time.now-30*24*60*60) %>' />
+		<input type='date' name='end_date' value='<%= time_to_html_value(Time.now) %>' />
+		<div id='clients-select-div' >
+			<%= render 'clients_select' %>
+		</div>
+		<div id='projects-select-div'>
+		</div>
+		<div id='tasks-select-div'>
+		</div>	
+		
+		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+		<%= link_to 'Generate Report', '#', :class => 'generate-report-link btn btn-primary' %>
+	</div>
+	
+</div>
 <script>
 $(document).on('ready page:load', function() { 
 

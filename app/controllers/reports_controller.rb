@@ -2,6 +2,7 @@ class ReportsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+		@reports = Report.all
 		@clients = current_user.clients.all
 		@type = report_params[:type]
 		if report_params[:client_id]
