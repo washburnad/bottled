@@ -13,13 +13,7 @@
 		<input type='date' name='start_date' value='<%= time_to_html_value(Time.now-30*24*60*60) %>' />
 		<input type='date' name='end_date' value='<%= time_to_html_value(Time.now) %>' />
 		
-		<h3>
-			<select id='report-type' name='report-type'>
-			<% report_options.each do |option| %>
-				<option value='<%= option[1] %>' <%= raw option[2] %> ><%= option[0] %> Report</option>
-			<% end %>
-			</select>	
-		</h3>
+		
 		<div id='clients-select-div' >
 			<%= render 'clients_select' %>
 		</div>
@@ -27,36 +21,46 @@
 		</div>
 		<div id='tasks-select-div'>
 		</div>	
-		
-		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-		<%= link_to 'Generate Report', '#', :class => 'generate-report-link btn btn-primary' %>
+		<%= link_to 'Back', :back, :class => 'btn btn-primary' %><br />
+		<h3 class='highlight'>Generate Report</h3>
+		<% report_options.each do |option| %>
+			<%= link_to "#{option[0]}", '#', :id => "#{option[1]}-link", :class => 'btn btn-primary' %>
+		<% end %>
 	</div>
 	
 </div>
 <script>
 $(document).on('ready page:load', function() { 
 
+var client_id = null;
+var project_id = null;
+var task_id = null;
+var start_date = null;
+var end_date = null;
 
-	function generateReport() {
-		var client_id = $('#clients-select').val();
-		var project_id = $("#projects-select").val();
-		var task_id = $('#tasks-select').val();
-		var start_date = $("input[name='start_date']").val();
-		var end_date = $("input[name='end_date']").val();
+	function updateVariables() {
+		client_id = $('#clients-select').val();
+		project_id = $("#projects-select").val();
+		task_id = $('#tasks-select').val();
+		start_date = $("input[name='start_date']").val();
+		end_date = $("input[name='end_date']").val();
+	}
 
+	function sendAJAX( type, id ) {
 		$.ajax({
-				type: 'get',
+				type: 'post',
 				url: 'reports',
-				dataType: 'html',
+				dataType: 'json',
 				data: {
-					client_id: client_id,
-					project_id: project_id,
-					task_id: task_id,
+					reportable_type: type,
+					reportable_id: id,
 					start_date: start_date,
 					end_date: end_date
 				},
-				success: function () {
-					alert('success');
+				success: function(data) {
+					console.log(data)
+					console.log(data['redirect_url'])
+					window.location.href = "/reports/27";
 				}
 
 
@@ -74,40 +78,7 @@ $(document).on('ready page:load', function() {
 		          success: function(data) { 
 		          	$('#tasks-select-div').html( data );}
 		        });
-
 	}
-
-	function displayMenus( report_type ) {
-		switch (report_type) {
-			case 'user':
-				$('#clients-select').hide();
-				$('#projects-select-div').hide();
-				$('#tasks-select-div').hide();
-				break ;
-			case 'client':
-				$('#clients-select').show();
-				$('#projects-select-div').hide();
-				$('#tasks-select-div').hide();
-				break;
-			case 'project':
-				$('#clients-select').show();
-				$('#projects-select-div').show();
-				$('#tasks-select-div').hide();
-				break;
-			case 'task':
-				$('#clients-select').show();
-				$('#projects-select-div').show();
-				$('#tasks-select-div').show();
-				break;
-		};
-
-	}
-
-	displayMenus( $('#report-type').val() )
-
-	$('#report-type').change( function () {
-		displayMenus ( $('#report-type').val() );
-	});
 
 	$('#clients-select').change( function () {
 		var client_id = $("#clients-select").val();
@@ -118,13 +89,21 @@ $(document).on('ready page:load', function() {
 		          data: { client_id: client_id },
 		          success: function(data) { 
 		          	$('#projects-select-div').html( data );
+		          	$('#tasks-select-div').html("");
 		          	$('#projects-select').change( getTaskSelect )
 		          }
 		      });
 
 	});
 
-	$('.generate-report-link').click( generateReport );
+	$('#client-link').click( function() {
+		updateVariables();
+		console.log('send ajax to create client', client_id)
+		if (client_id) {
+			sendAJAX( 'client', client_id );
+		}
+
+	});
 
 });
 
