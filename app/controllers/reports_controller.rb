@@ -27,7 +27,14 @@ class ReportsController < ApplicationController
 		if @context.nil?
 			redirect_to reports_path
 		end
-		
+	end
+
+	def edit 
+		@report = Report.find(params[:id])
+		@context = context(@report)
+		if @context.nil?
+			redirect_to reports_path
+		end
 	end
 
 	def create
@@ -37,6 +44,16 @@ class ReportsController < ApplicationController
 			render :json => { redirect_url: report_path(@report) }
 		else
 			render :text, :status => :unprocessable_entity
+		end
+	end
+
+	def update
+		@report = Report.find(params[:id])
+		@report.update_attributes(report_params)
+		if @report.valid?
+			redirect_to report_path(@report)
+		else 
+			render :text, status: :unprocessable_entity
 		end
 	end
 
