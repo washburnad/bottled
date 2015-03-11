@@ -32,26 +32,20 @@
 <script>
 $(document).on('ready page:load', function() { 
 
-var client_id = null;
-var project_id = null;
-var task_id = null;
-var start_date = null;
-var end_date = null;
+var start_date, end_date;
 
 	function updateVariables() {
-		client_id = $('#clients-select').val();
-		project_id = $("#projects-select").val();
-		task_id = $('#tasks-select').val();
 		start_date = $("input[name='start_date']").val();
 		end_date = $("input[name='end_date']").val();
 	}
 
-	function sendAJAX( type, id ) {
+	function sendAJAX( type, id, name ) {
 		$.ajax({
 				type: 'post',
 				url: 'reports',
 				dataType: 'json',
 				data: {
+					name: name,
 					reportable_type: type,
 					reportable_id: id,
 					start_date: start_date,
@@ -60,12 +54,17 @@ var end_date = null;
 				success: function(data) {
 					console.log(data)
 					console.log(data['redirect_url'])
-					window.location.href = "/reports/27";
+					window.location.href = data['redirect_url'];
 				}
 
 
 		});
 
+	}
+
+	function getName(type_string) {
+		return_string = type_string+" report: "+start_date+" to "+end_date;
+		return return_string
 	}
 
 	function getTaskSelect() {
@@ -98,12 +97,35 @@ var end_date = null;
 
 	$('#client-link').click( function() {
 		updateVariables();
-		console.log('send ajax to create client', client_id)
+		var name = getName('Client');
+		var client_id = $('#clients-select').val();
 		if (client_id) {
-			sendAJAX( 'client', client_id );
+			sendAJAX( 'client', client_id, name );
 		}
 
 	});
+
+	$('#project-link').click( function() {
+		updateVariables();
+		var name = getName('Project');
+		var project_id = $('#projects-select').val();
+		if (project_id) {
+			sendAJAX( 'project', project_id, name );
+		}
+
+	});	
+
+	$('#task-link').click( function() {
+		updateVariables();
+		var name = getName('Task');
+		var task_id = $('#tasks-select').val();
+		if (task_id) {
+			console.log('sendAJAX');
+			sendAJAX( 'task', task_id, name );
+		}
+
+	});	
+	
 
 });
 

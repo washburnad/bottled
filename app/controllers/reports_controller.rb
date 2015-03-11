@@ -86,6 +86,8 @@ class ReportsController < ApplicationController
 			@context = Client.find(id)
 		when 'project'
 			@context = Project.find(id)
+		when 'task'
+			@context = Task.find(id)
 		end
 
 	end
