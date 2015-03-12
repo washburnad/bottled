@@ -43,6 +43,13 @@ group :development do
 	# add byebug
 	gem 'byebug'
 end
+
+group :test do
+
+  #factory girl
+  gem "factory_girl_rails", "~> 4.0"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
