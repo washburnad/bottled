@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :require_authorized_for_current_client, only: [ :show, :edit, :udpate]
+	before_action :require_authorized_for_current_client, only: [ :show, :edit, :update]
 
 	def index
 		@clients = current_user.clients.to_a
