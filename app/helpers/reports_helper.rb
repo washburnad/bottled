@@ -1,5 +1,5 @@
 module ReportsHelper
-	# helper_method :report_options
+	
 	def report_options
 		types = [ 'Client' , 'Project' , 'Task' , 'User' ]
 		options = []
