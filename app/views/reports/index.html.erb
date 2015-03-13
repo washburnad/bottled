@@ -100,7 +100,7 @@ var start_date, end_date;
 		var name = getName('Client');
 		var client_id = $('#clients-select').val();
 		if (client_id) {
-			sendAJAX( 'client', client_id, name );
+			sendAJAX( 'Client', client_id, name );
 		}
 
 	});
@@ -110,7 +110,7 @@ var start_date, end_date;
 		var name = getName('Project');
 		var project_id = $('#projects-select').val();
 		if (project_id) {
-			sendAJAX( 'project', project_id, name );
+			sendAJAX( 'Project', project_id, name );
 		}
 
 	});	
@@ -121,7 +121,7 @@ var start_date, end_date;
 		var task_id = $('#tasks-select').val();
 		if (task_id) {
 			console.log('sendAJAX');
-			sendAJAX( 'task', task_id, name );
+			sendAJAX( 'Task', task_id, name );
 		}
 
 	});	
