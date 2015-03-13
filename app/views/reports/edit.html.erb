@@ -1,0 +1,10 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+  <h1 class='highlight'>Report</h1>
+  <h3 class='highlight'><%= @report.reportable_type %> report for <%= @context.name %></h3>
+  <%= simple_form_for @report do |f| %>
+    <%= f.input :name %>
+    <%= f.input :start_date, as: :datetime %>
+    <%= f.input :end_date %>
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
+</div>

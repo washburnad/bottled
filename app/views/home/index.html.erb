@@ -33,7 +33,7 @@
 				<h1><%= link_to 'Reports', reports_path, :class => 'nav-link ' %></h1>
 				<% @reports.each do |report| %>
 					<h3 class='highlight'>
-						<span class="glyphicon" style=" color: <%= report.reportable.glyph_color %>;	"><%= raw report.reportable.glyph_id %></span>
+						<span class="glyphicon" style=" color: <%#= report.reportable.glyph_color %>;	"><%#= raw report.reportable.glyph_id %></span>
 						<%= link_to report.name, report_path( report ), :class => 'nav-link vert-list' %>
 					</h3>
 				<% end %>
