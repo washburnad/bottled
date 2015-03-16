@@ -42,6 +42,12 @@ group :development do
 
 	# add byebug
 	gem 'byebug'
+
+  gem 'awesome_print', '~> 1.6.1'
+
+  gem 'quiet_assets'
+
+
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
