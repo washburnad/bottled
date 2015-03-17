@@ -9,7 +9,15 @@ FactoryGirl.define do
   end
 
   factory :client do
-    name "Client name"
+    sequence :name do |n|
+      "Client#{n}"
+    end
+  end
+
+  factory :project do
+    sequence :name do |n|
+      "Project#{n}"
+    end
   end
 
 end

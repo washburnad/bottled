@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	before_action :require_authorized_user
 
 	def index
-		@projects = current_client.projects.all
+		@projects = current_client.projects.to_a
 	end
 
 	def new

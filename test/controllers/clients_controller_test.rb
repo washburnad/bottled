@@ -101,6 +101,7 @@ class ClientsControllerTest < ActionController::TestCase
   def setup_user
     @user = FactoryGirl.create(:user)
     sign_in @user
+    @client = FactoryGirl.create(:client, user_id: @user.id)
   end
 
 end
