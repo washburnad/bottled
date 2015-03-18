@@ -195,7 +195,8 @@ h1 .h1-small {
 	padding: 10px;
 	border: none;
 	border-radius: 8px;
-	box-shadow: rgba(0,0,0,0.92) 9px 6px 8px;
+	-webkit-box-shadow: 0px 0px 30px rgba(255, 0, 0, .8);
+	box-shadow: 0px 0px 30px rgba(255, 0, 0, .8);
 	display: none;
 	z-index: 5;
 
@@ -209,6 +210,16 @@ h1 .h1-small {
 
 	&.active {
 		display: block;
+	}
+
+	&.running {
+		-webkit-box-shadow: 0px 0px 30px rgba(0, 255, 0, .8);
+		box-shadow: 0px 0px 30px rgba(0, 255, 0, .8);
+		}
+
+	&.paused {
+		-webkit-box-shadow: 0px 0px 30px rgba(250, 215, 0, .8);
+		box-shadow: 0px 0px 30px rgba(250, 215, 0, .8);
 	}
 	
 	.inner-box {
@@ -234,9 +245,7 @@ h1 .h1-small {
 		}
 
 		.time {
-			position: absolute;
-			width: 100%;
-			left: 0;
+			width: auto;
 			text-align: center;
 		}
 
