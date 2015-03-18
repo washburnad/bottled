@@ -11,7 +11,7 @@
 				<% end %>
 			</div>
 			<div class='col-xs-12 col-sm-6'>
-				<h1><%= link_to 'Projects', '#', :class => 'nav-link ' %></h1>
+				<h1><%= link_to 'Projects', user_projects_path(current_user), :class => 'nav-link ' %></h1>
 				<% @projects.each do |project| %>
 					<h3 class='highlight'>
 						<span class="glyphicon" style=" color: <%= project.client.glyph_color %>;	"><%= raw project.client.glyph_id %></span>
@@ -21,7 +21,7 @@
 			</div>
 			<div class='clr'></div>
 			<div class='col-xs-12 col-sm-6'>
-				<h1><%= link_to 'Tasks', '#', :class => 'nav-link ' %></h1>
+				<h1><%= link_to 'Tasks', user_tasks_path(current_user), :class => 'nav-link ' %></h1>
 				<% @tasks.each do |task| %>
 					<h3 class='highlight'>
 						<span class="glyphicon" style=" color: <%= task.project.client.glyph_color %>;	"><%= raw task.project.client.glyph_id %></span>

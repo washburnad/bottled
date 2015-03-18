@@ -13,6 +13,12 @@ Bottled::Application.routes.draw do
     resources :events
   end
 
+  resources :users, :only => [] do
+    resources :projects, :only => [:index], :to => 'users#project_index'
+    resources :tasks, :only => [:index], :to => 'users#task_index'
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

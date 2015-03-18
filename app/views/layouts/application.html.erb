@@ -31,7 +31,7 @@
 		   	      </ul>
 		      	</li> -->
 		      	<% if current_user %>
-		          <li><%= link_to 'My Account', '#' %></li>
+		          <li><%= link_to current_user.email, '#' %></li>
 		        <% else %>
 		        	<li><%= link_to 'Sign Up', new_user_registration_path %></li>
 	    	    <% end %>
