@@ -1,17 +1,24 @@
 
 $(document).on('ready page:load', function() {
 	// initiate global variables
+	var pauseElement = $('#pause');
 	var startElement = $('#start');
 	var stopElement = $('#stop');
 	var timeElement = $('#time');
+	var timerBox = $('.timer-box');
 	var elapsedTime = 0;
+	var pausedTime = 0;
+	var pauseStart, pauseEnd;
 
 
 	// function to display current elapsed time, updated every 500ms
 	function showTime(startTime) {
 			// get current time in seconds
 			var time = Math.floor(Date.now()/1000);
-			elapsedTime = (time - startTime);
+			if (!timerBox.hasClass('paused')) {
+				elapsedTime = (time - startTime - pausedTime);
+			};
+			console.log( pausedTime, ' ', elapsedTime);
 			
 			// get hours, minutes, seconds and format them for display
 			// and update HTML
@@ -33,10 +40,27 @@ $(document).on('ready page:load', function() {
 	}
 
 
+	pauseElement.click(function(e) {
+		if (timerBox.hasClass('running')) {
+			timerBox.addClass('paused').removeClass('running');
+			pauseStart = Math.floor(Date.now()/1000);
+			console.log('start pause at', pauseStart)
+			
+		} else if (timerBox.hasClass('paused')) {
+			timerBox.addClass('running').removeClass('paused');
+			pauseEnd = Math.floor(Date.now()/1000);
+			console.log('end pause at ',pauseEnd);
+			pausedTime = pausedTime + pauseEnd - pauseStart;
+			console.log('total paused time is ',pausedTime);
+		}
+		
+
+	});
+
 	// Initiate a timer event
 	startElement.click(function( e ) {
 		// display timer-box, hide startElement
-		$('.timer-box').addClass('active');
+		timerBox.removeClass('puased').addClass('running');
 		startElement.addClass('inactive');
 		// get current time in s
 		var startTime = Math.floor(Date.now()/1000);
@@ -57,7 +81,7 @@ $(document).on('ready page:load', function() {
 
 	// End a timer event
 	stopElement.click(function( e ) {
-		//e.preventDefault()
+		timerBox.removeClass('running').removeClass('paused');
 		// get current time in s
 		var endTime = Math.floor(Date.now()/1000);
 		// get name of event from input
