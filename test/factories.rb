@@ -20,4 +20,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :task do 
+    sequence :name do |n|
+      "Task#{n}"
+    end
+  end
+
 end
