@@ -4,10 +4,10 @@ class ReportsController < ApplicationController
 
 	def index
 		@reports = Report.all
-		@clients = current_user.clients.all
+		@clients = current_user.clients.to_a
 		
 		if params[:client_id]
-			@projects = current_user.clients.find( params[:client_id] ).projects.all
+			@projects = current_user.clients.find( params[:client_id] ).projects.to_a
 
 			respond_to do |format|
 			  format.html { render :partial => 'projects_select' }
