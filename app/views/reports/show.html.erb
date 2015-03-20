@@ -3,11 +3,10 @@
   <h3 class='highlight'>A <%= @report.reportable_type %> report for <%= @context.name %></h3>
   <table class="report-table">
     <tr class="report-header">
-      <th>Date</th>
-      <th>Ref</th>
-      <th>Name</th>
-      <th>Descr</th>
-      <th>Duration</th>
+      <th class="Date">Date</th>
+      <th class="Name">Name</th>
+      <th class="Description">Description</th>
+      <th class="Duration">Duration</th>
     </tr>
     <% @context.events.each do |event| %>
       <% if !event.name.nil? %>
@@ -16,10 +15,7 @@
             <%= event.start_time %>
           </td>
           <td>
-            <%= event.id %>
-          </td>
-          <td>
-            <%= event.name %><br />
+            <%= link_to event.name, task_event_path(event.task, event), target: '_blank' %><br />
           </td>
           <td>
             <%= event.description %><br />
@@ -33,9 +29,8 @@
     <tr class="report-totals">
       <td>Total</td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td>calculated total</td>
+        <td></td>
+      <td><%= @report.total_duration %></td>
     </tr>
   </table>
 </div>

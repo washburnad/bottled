@@ -2,11 +2,15 @@
 
 .report-table {
   background-color: $white;
-  border: 2px solid $dark-blue;
+  border: 1px solid $dark-blue;
   width: 90%;
   margin: 5px 5%;
   color: $dark-blue;
+  border-collapse: collapse;
 
+  th, td {
+    border: 1px solid $light-blue;
+  }
   tr:nth-child(odd) {
     background-color: $pale-blue;
   }
