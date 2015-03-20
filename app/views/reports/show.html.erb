@@ -1,9 +1,41 @@
-<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+<div class='float-box col-xs-10 col-xs-offset-1'>
   <h1 class='highlight'><%= link_to @report.name, report_path(@report) %></h1>
   <h3 class='highlight'>A <%= @report.reportable_type %> report for <%= @context.name %></h3>
-  <% @context.events.each do |event| %>
-    <% if !event.name.nil? %>
-      <%= event.name %><br />
+  <table class="report-table">
+    <tr class="report-header">
+      <th>Date</th>
+      <th>Ref</th>
+      <th>Name</th>
+      <th>Descr</th>
+      <th>Duration</th>
+    </tr>
+    <% @context.events.each do |event| %>
+      <% if !event.name.nil? %>
+        <tr>
+          <td>
+            <%= event.start_time %>
+          </td>
+          <td>
+            <%= event.id %>
+          </td>
+          <td>
+            <%= event.name %><br />
+          </td>
+          <td>
+            <%= event.description %><br />
+          </td>
+          <td>
+            <%= event.duration %><br />
+          </td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
+    <tr class="report-totals">
+      <td>Total</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>calculated total</td>
+    </tr>
+  </table>
 </div>
