@@ -8,7 +8,6 @@
 		<%= f.input  :name %></li>
 		Duration: <%= time_in_h_mm(@event.duration) %><br />
 		Start Time: <%= time_to_string(@event.start_time) %><br />
-		End Time: <%= time_to_string(@event.end_time) %><br />
 		
 		
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>

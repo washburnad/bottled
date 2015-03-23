@@ -12,7 +12,7 @@
       <% if !event.name.nil? %>
         <tr>
           <td>
-            <%= event.start_time %>
+            <%= timeUTC_to_date(event.start_time) %>
           </td>
           <td>
             <%= link_to event.name, task_event_path(event.task, event), target: '_blank' %><br />

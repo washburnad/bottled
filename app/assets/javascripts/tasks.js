@@ -63,16 +63,18 @@ $(document).on('ready page:load', function() {
 		timerBox.removeClass('puased').addClass('running');
 		startElement.addClass('inactive');
 		// get current time in s
-		var startTime = Math.floor(Date.now()/1000);
+		now = new Date;
+		var startTime = Math.floor(now /1000);
 		// initiate timer display
 		showTime(startTime);
+		startTimeUTC = (now).toUTCString();
 
 		// send post request to create event.  retrieve update url and assign it to the stopElement
 	  $.ajax({
 		          type: 'POST',
 		          url: startElement.data('create-url'),
 		          dataType: 'json',
-		          data: { event: { start_time: startTime } },
+		          data: { event: { start_time: startTimeUTC } },
 		          success: function(data) { 
 		          	stopElement.data('update-url', data.update_url);}
 		        });
@@ -93,7 +95,7 @@ $(document).on('ready page:load', function() {
 		          type: 'PUT',
 		          url: stopElement.data('update-url'),
 		          dataType: 'json',
-		          data: { event: { end_time: endTime, duration: elapsedTime, name: eventName } },
+		          data: { event: { duration: elapsedTime, name: eventName } },
 		          success: function() {
 		          	clearTimeout(t);
 		          	startElement.removeClass('inactive');
