@@ -46,19 +46,18 @@ class ProjectsControllerTest < ActionController::TestCase
   test "Should fail update with wrong user" do
     setup_user_and_client
     project = FactoryGirl.create(:project, client_id: @client.id)
-    sign_out@user
+    sign_out @user
     user2 = FactoryGirl.create(:user)
     sign_in user2
     put :update, id: project.id, client_id: @client.id, project: { name: "New name"}
     project.reload
 
     assert_not_equal "New name", project.name
-    assert_response :unauthorized
+    assert_redirected_to root_path
   end
 
   def setup_user_and_client
-    @user = FactoryGirl.create(:user)
-    sign_in @user
+    setup_user
     @client = FactoryGirl.create(:client, user_id: @user.id)
   end
 end

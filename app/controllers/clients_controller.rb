@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :require_authorized_for_current_client, only: [ :show, :edit, :update]
+	before_action :require_authorized, only: [ :show, :edit, :update]
 
 	def index
 		@clients = current_user.clients.to_a
@@ -49,7 +49,7 @@ class ClientsController < ApplicationController
 	end
 
 
-	def require_authorized_for_current_client
+	def require_authorized
 		if current_client.user != current_user
 			redirect_to root_path, alert: 'Current user does not have access to that page.'
 		end

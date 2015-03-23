@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
 	before_action :authenticate_user!
+	before_action :require_authorized
 
 	def index
-		@tasks = current_project.tasks.all
+		@tasks = current_project.tasks.to_a
 	end
 
 	def new
@@ -51,5 +52,11 @@ class TasksController < ApplicationController
 
 	def task_params
 		params.require(:task).permit(:name)
+	end
+
+	def require_authorized
+		if current_client.user != current_user
+			redirect_to root_path, alert: 'Current user does not have access to that page.'
+		end
 	end
 end

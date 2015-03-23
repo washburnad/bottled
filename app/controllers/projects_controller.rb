@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :require_authorized_user
+	before_action :require_authorized
 
 	def index
 		@projects = current_client.projects.to_a
@@ -47,9 +47,9 @@ class ProjectsController < ApplicationController
 		@current_client ||= Client.find(params[:client_id])
 	end
 
-	def require_authorized_user
+	def require_authorized
 		if current_client.user != current_user
-			render :text => 'Unauthorized', :status => :unauthorized
+			redirect_to root_path, alert: 'Current user does not have access to that page.'
 		end
 	end
 

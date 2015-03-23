@@ -32,16 +32,11 @@ class ReportsControllerTest < ActionController::TestCase
   end
 
   def setup_reports
-    sign_in_user
+    setup_user
     @client = FactoryGirl.create(:client, user_id: @user.id)
     @project = FactoryGirl.create(:project, client_id: @user.id)
     @task = FactoryGirl.create(:task, project_id: @project.id)
 
-  end
-
-  def sign_in_user
-    @user = FactoryGirl.create(:user)
-    sign_in @user
   end
 
 end
