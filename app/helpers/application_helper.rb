@@ -9,7 +9,11 @@ module ApplicationHelper
 		end
 	end
 
-	def time_to_html_value(time)
+	def timeUTC_to_date(timeUTC)
+		timeUTC.strftime("%Y-%m-%d")
+	end
+
+	def time_to_date_string(time)
 		if !time.nil?
 			Time.at(time).strftime("%Y-%m-%d")
 		else

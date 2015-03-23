@@ -26,4 +26,8 @@ FactoryGirl.define do
     end
   end
 
+  factory :report do 
+    
+  end 
+
 end

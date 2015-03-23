@@ -34,6 +34,8 @@ class ReportsController < ApplicationController
 		@context = context(@report)
 		if @context.nil?
 			redirect_to reports_path
+		else
+			redirect_to report_path(@report)
 		end
 	end
 
@@ -78,15 +80,17 @@ class ReportsController < ApplicationController
 
 	def context( reportable )
 		type = reportable.reportable_type
+		puts type
 		id = reportable.reportable_id
+		puts id
 		case type
-		when 'user'
+		when 'User'
 			@context = User.find(id)
-		when 'client'
+		when 'Client'
 			@context = Client.find(id)
-		when 'project'
+		when 'Project'
 			@context = Project.find(id)
-		when 'task'
+		when 'Task'
 			@context = Task.find(id)
 		end
 

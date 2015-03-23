@@ -23,12 +23,25 @@ class ReportsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should render show page" do 
+    setup_reports
+    @report = FactoryGirl.create(:report, reportable_type: 'Client', reportable_id: @client.id)
+    get :show, id: @report.id
+
+    assert_response :success
+  end
+
   def setup_reports
-    @user = FactoryGirl.create(:user)
-    sign_in @user
+    sign_in_user
     @client = FactoryGirl.create(:client, user_id: @user.id)
     @project = FactoryGirl.create(:project, client_id: @user.id)
     @task = FactoryGirl.create(:task, project_id: @project.id)
 
   end
+
+  def sign_in_user
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
+
 end

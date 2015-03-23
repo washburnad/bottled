@@ -1,3 +1,24 @@
-// Place all the styles related to the reports controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.report-table {
+  background-color: $white;
+  border: 1px solid $dark-blue;
+  width: 90%;
+  margin: 5px 5%;
+  color: $dark-blue;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid $light-blue;
+  }
+  tr:nth-child(odd) {
+    background-color: $pale-blue;
+  }
+  
+  tr.report-header,
+  tr.report-totals {
+    background-color: $dark-blue;
+    color: $white;
+  }
+
+}
