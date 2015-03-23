@@ -12,6 +12,19 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def setup_user
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
+
+  def switch_user
+    sign_out @user
+    @user2 = FactoryGirl.create(:user)
+    sign_in @user2
+  end
+
+
 end
 
 class ActionController::TestCase
