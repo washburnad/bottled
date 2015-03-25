@@ -5,7 +5,8 @@
 	</h1>
 	<h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
 	<h2 class='highlight'><%= link_to @task.name, task_events_path(@task) %></h2>
-	<h2>New event name <input id='name' name='name' type='text' value="<%= time_to_string(Time.new) %>"/>	</h2>
+	<h2>New event</h2>
+	<h3>Event name <input id='name' name='name' type='text' value="<%= timeUTC_to_date_time(Time.new) %>"/>	</h3>
 	
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'Edit', edit_project_task_path(current_project, @task), :class => 'btn btn-primary' %>

@@ -71,12 +71,10 @@ a {
 	color: $light-blue;
 
 	&:hover {
+		margin-left: 2px;
 		color: $dark-blue;
+		text-decoration: none;
 	}	
-}
-
-a:hover {
-	text-decoration: none;
 }
 
 .highlight,
@@ -94,6 +92,7 @@ a:hover {
 	color: $white;
 	background-color: $dark-blue;
 	border-color: $light-blue;
+	margin-left: 0;
 }
 
 select,
@@ -174,6 +173,11 @@ h1 .h1-small {
 		&:hover {
 			color: $dark-blue;
 		}
+
+		&.add-new {
+			color: $white;
+			font-style: italic;
+		}
 	}
 
 }
@@ -245,7 +249,7 @@ h1 .h1-small {
 		}
 
 		.time {
-			width: auto;
+			width: 150px;
 			text-align: center;
 		}
 
@@ -268,6 +272,10 @@ form{
 			&:first-child {
 				margin-left: 5%;
 			}
+		}
+
+		&[type='submit'] {
+			margin: 2px 0;
 		}
 
 

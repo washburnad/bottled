@@ -95,7 +95,7 @@ $(document).on('ready page:load', function() {
 		          type: 'PUT',
 		          url: stopElement.data('update-url'),
 		          dataType: 'json',
-		          data: { event: { duration: elapsedTime, name: eventName } },
+		          data: { event: { duration: elapsedTime/60, name: eventName } },
 		          success: function() {
 		          	clearTimeout(t);
 		          	startElement.removeClass('inactive');

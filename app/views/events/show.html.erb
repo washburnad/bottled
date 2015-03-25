@@ -6,8 +6,9 @@
 	<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
 		
 		<%= f.input  :name %></li>
-		Duration: <%= time_in_h_mm(@event.duration) %><br />
-		Start Time: <%= time_to_string(@event.start_time) %><br />
+		Duration: <%= number_with_precision(mins_to_hours(@event.duration), precision: 2) %> hours<br />
+		Date: <%= timeUTC_to_date(@event.start_time) %><br />
+		Start Time: <%= timeUTC_to_time(@event.start_time) %><br />
 		
 		
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
