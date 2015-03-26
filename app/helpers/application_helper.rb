@@ -25,13 +25,13 @@ module ApplicationHelper
 		time.getlocal.strftime("%I:%M %P")
 	end
 
-	# def time_to_date_string(time)
-	# 	if !time.nil?
-	# 		Time.at(time).strftime("%Y-%m-%d")
-	# 	else
-	# 		"Unknown"
-	# 	end
-	# end
+	def time_to_date_string(time)
+		if !time.nil?
+			Time.at(time).strftime("%Y-%m-%d")
+		else
+			"Unknown"
+		end
+	end
 
 	# # converts seconds to a H:MM
 	# def time_in_h_mm(seconds)
