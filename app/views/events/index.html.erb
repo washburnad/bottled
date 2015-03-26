@@ -5,10 +5,13 @@
   </h1>
   <h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
 	<h2 class='highlight'><%= link_to current_task.name, project_task_path(current_project, current_task) %></h2>
-	<% @events.each do |event| %>
-		<div class='item-box'>	
+	<div class='item-box'> 
+    <% @events.each do |event| %>
 			<h2><%= link_to event.name, task_event_path(current_task, event) %></h2>
-		</div>
-	<% end %>	
+    <% end %>
+    <h3>
+      <%= link_to '+ Add New Event', project_task_path(current_project, current_task), class: 'add-new' %>
+    </h3>
+  </div>
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 </div>

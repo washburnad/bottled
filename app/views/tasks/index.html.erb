@@ -4,11 +4,13 @@
   	<span class="glyphicon" style=" color: <%= current_client.glyph_color %>;	"><%= raw current_client.glyph_id %></span>
   </h1>
   <h2 class='highlight'><%= link_to current_project.name, client_project_path(current_client, current_project) %></h2>
-	<% @tasks.each do |task| %>
-		<div class='item-box'>	
-			<h3><%= link_to task.name, project_task_path(current_project, task) %></h3>
-		</div>
-	<% end %>	
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= link_to 'New Task', new_project_task_path(current_project), :class => 'btn btn-primary' %>
+	<div class='item-box'>	
+	 <% @tasks.each do |task| %>
+  		<h3><%= link_to task.name, project_task_path(current_project, task) %></h3>
+    <% end %>
+    <h3>
+      <%= link_to '+ Add New Task', new_project_task_path(current_project), class: 'add-new' %>
+    </h3>
+  </div>
+  <%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 </div>
