@@ -30,6 +30,11 @@ class ClientsController < ApplicationController
 	def update
 		@client = Client.find(params[:id])
 		@client.update_attributes(client_params)
+		if params[:collaborating_user].present?
+			user = User.find(params[:collaborating_user])
+			add_collaborator(user)
+		end
+
 		if @client.valid?
 			redirect_to client_path(@client)
 		else
