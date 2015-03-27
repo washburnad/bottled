@@ -4,10 +4,11 @@
 		<span class="glyphicon" style=" color: <%= @client.glyph_color %>;	"><%= raw @client.glyph_id %></span>
 	</h1>
 	<ul>
-		<li>Contact Name:<%= @client.contact_name %></li>
-		<li>Title:<%= @client.contact_title %></li>
-		<li>Email:<%= @client.contact_email %></li>
-		<li>Phone:<%= @client.contact_phone %></li>
+		<li>Contact Name: <%= @client.contact_name %></li>
+		<li>Title: <%= @client.contact_title %></li>
+		<li>Email: <%= @client.contact_email %></li>
+		<li>Phone: <%= @client.contact_phone %></li>
+    <li>Hourly Bill Rate: <%= number_to_currency(@client.billing_rate) %></li>
 	</ul>
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'Edit', edit_client_path(@client), :class => 'btn btn-primary' %>

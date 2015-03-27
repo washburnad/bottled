@@ -12,5 +12,8 @@ class Report < ActiveRecord::Base
     end
     return total
   end
+  
+  def amount_billed
+  end
 
 end
