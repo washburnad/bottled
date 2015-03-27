@@ -30,4 +30,8 @@ FactoryGirl.define do
     
   end 
 
+  factory :collaboration do 
+
+  end
+
 end
