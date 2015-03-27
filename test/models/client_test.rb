@@ -20,7 +20,7 @@ class ClientTest < ActiveSupport::TestCase
 
   end
 
-  test "Should fail collaboration because same user id" do 
+  test "Should fail collaboration because same user" do 
     user = FactoryGirl.create(:user)
     client = FactoryGirl.create(:client, user_id: user.id)
 
@@ -28,6 +28,43 @@ class ClientTest < ActiveSupport::TestCase
       client.add_collaborator(user)
     end
 
+  end
+
+  test "Should get collaborating user from email" do 
+    client = FactoryGirl.create(:client)
+    user = FactoryGirl.create(:user)
+    collaboration_params = {collaborator_string: user.email}
+
+    assert_equal user, Client.collaborating_user(collaboration_params)
+  end
+
+
+  test "Should get collaborating user from id" do 
+    client = FactoryGirl.create(:client)
+    user = FactoryGirl.create(:user)
+    collaboration_params = {collaborator_string: user.id.to_s}
+
+    assert_equal user, Client.collaborating_user(collaboration_params)
+  end
+
+  test "Should check if client is collaborator" do 
+    client = FactoryGirl.create(:client)
+    user = FactoryGirl.create(:user)
+    collaboration = FactoryGirl.create(:collaboration, client_id: client.id, user_id: user.id)
+
+    assert client.collaborator?(user)
+  end
+
+  test "Should return array of collaborators" do 
+    client = FactoryGirl.create(:client)
+    user1 = FactoryGirl.create(:user)
+    collaboration = FactoryGirl.create(:collaboration, client_id: client.id, user_id: user1.id)
+    user2 = FactoryGirl.create(:user)
+    collaboration = FactoryGirl.create(:collaboration, client_id: client.id, user_id: user2.id)
+
+    client_collaborators = [user1, user2]
+
+    assert_equal client_collaborators, client.collaborators
   end
 
 end

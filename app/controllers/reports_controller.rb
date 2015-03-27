@@ -80,9 +80,7 @@ class ReportsController < ApplicationController
 
 	def context( reportable )
 		type = reportable.reportable_type
-		puts type
 		id = reportable.reportable_id
-		puts id
 		case type
 		when 'User'
 			@context = User.find(id)
