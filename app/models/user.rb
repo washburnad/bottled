@@ -21,4 +21,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def name
+    name = first_name? ? first_name : ""
+    name += " " 
+    name += last_name? ? last_name : ""
+  end
+
 end
