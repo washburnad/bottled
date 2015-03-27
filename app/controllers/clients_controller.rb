@@ -30,9 +30,9 @@ class ClientsController < ApplicationController
 	def update
 		@client = Client.find(params[:id])
 		@client.update_attributes(client_params)
-		if params[:collaborating_user].present?
-			user = User.find(params[:collaborating_user])
-			add_collaborator(user)
+		if collaboration_params[:collaborating_user].present?
+			user = User.find(collaboration_params[:collaborating_user])
+			@client.add_collaborator(user)
 		end
 
 		if @client.valid?
@@ -46,6 +46,10 @@ class ClientsController < ApplicationController
 
 	def client_params
 		params.require(:client).permit(:name, :contact_name, :contact_email, :contact_title, :contact_phone, :glyph_id, :glyph_color)
+	end
+
+	def collaboration_params
+		params.require(:collaboration).permit(:collaborating_user)
 	end
 
 	helper_method :current_client

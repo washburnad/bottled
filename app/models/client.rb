@@ -8,14 +8,11 @@ class Client < ActiveRecord::Base
 
 	validates :name, :presence => true
 
-  def add_collaborator(user)
-    puts "adding collaborator"
-    collaboration = Collaboration.create(client_id: id, user_id: user.id)
-    if collaboration.valid? 
-      puts "collaboration saved" 
-    else
-      puts "collaboration not saved"
+  def add_collaborator(collaborating_user)
+    if user.id != collaborating_user.id 
+      collaborations.create(user: collaborating_user)
     end
   end
 
 end
+
