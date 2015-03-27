@@ -22,7 +22,7 @@
             <%= event.description %><br />
           </td>
           <td>
-            <%= event.amount_billeable %>
+            <%= number_to_currency(event.amount_billeable) %>
           </td>
           <td>
             <%= event.duration %><br />
@@ -34,7 +34,7 @@
       <td>Total</td>
       <td></td>
       <td></td>
-      <td>Total billeable</td>
+      <td><%= number_to_currency(@report.total_billeable) %></td>
       <td><%= @report.total_duration %></td>
     </tr>
   </table>

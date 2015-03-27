@@ -27,6 +27,11 @@ class Client < ActiveRecord::Base
   def collaborators
     collaborations.map { |c| User.find(c["user_id"]) }
   end
+  
+  # Amount billeable per seconds from billing_rate for calculation
+  def bill_per_second
+    self.billing_rate / (60 * 60)
+  end
 
 end
 
