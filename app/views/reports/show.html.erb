@@ -6,6 +6,7 @@
       <th class="Date">Date</th>
       <th class="Name">Name</th>
       <th class="Description">Description</th>
+      <th class="Amount Billed">Billeable Amount</th>
       <th class="Duration">Duration</th>
     </tr>
     <% @context.events.each do |event| %>
@@ -21,6 +22,9 @@
             <%= event.description %><br />
           </td>
           <td>
+            <%= number_to_currency(event.amount_billeable) %>
+          </td>
+          <td>
             <%= event.duration %><br />
           </td>
         </tr>
@@ -29,7 +33,8 @@
     <tr class="report-totals">
       <td>Total</td>
       <td></td>
-        <td></td>
+      <td></td>
+      <td><%= number_to_currency(@report.total_billeable) %></td>
       <td><%= @report.total_duration %></td>
     </tr>
   </table>

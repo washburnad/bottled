@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 20150327130053) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.text     "glyph_id",      default: "&#xE022;"
-    t.text     "glyph_color",   default: "#c48219"
+    t.text     "glyph_id",                              default: "&#xE022;"
+    t.text     "glyph_color",                           default: "#c48219"
+    t.decimal  "billing_rate",  precision: 8, scale: 2
   end
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree

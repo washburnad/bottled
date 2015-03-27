@@ -12,6 +12,7 @@ FactoryGirl.define do
     sequence :name do |n|
       "Client#{n}"
     end
+    billing_rate BigDecimal.new("10.00")
   end
 
   factory :project do

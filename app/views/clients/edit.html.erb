@@ -14,6 +14,7 @@
 		<%= f.input :contact_title, label: false, placeholder: 'Contact Title' %>
 		<%= f.input :contact_email, label: false, placeholder: 'Contact Email' %>
 		<%= f.input :contact_phone, label: false, placeholder: 'Contact Phone' %>
+    <%= f.input :billing_rate, label: false, placeholder: 'Hourly Billing Rate' %>
 		<%= f.input :glyph_color, label: false, placeholder: 'Glyphicon color (hex)', :as => :minicolors %><br />
 		<input type='text' name='collaboration[collaborator_string]' placeholder='Add collaborator id' />
 		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
