@@ -35,7 +35,7 @@ FactoryGirl.define do
   end
 
   factory :report do 
-    
+    name 'Report name'
   end 
 
   factory :collaboration do 
