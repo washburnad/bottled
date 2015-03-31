@@ -8,29 +8,16 @@ class Client < ActiveRecord::Base
 
 	validates :name, :presence => true
 
-  def add_collaborator(collaborating_user)
-    return false unless collaborating_user.present?
-    return false if user.id == collaborating_user.id
-    # return false if is_collaborator?(collaborating_user)
-    c = collaborations.create(user: collaborating_user)
-  end
-
-  def self.collaborating_user(collaboration_params)
-    collaborator_string = collaboration_params[:collaborator_string]
-    collaborating_user = User.user_from_id_or_email(collaborator_string)
-  end
-
-  def collaborator?(user)
-    collaborators.any? { |c| c == user }
-  end
-
-  def collaborators
-    collaborations.map { |c| User.find(c["user_id"]) }
-  end
+  include Collaborations
   
-  # Amount billeable per seconds from billing_rate for calculation
+  # Amount billable per seconds from billing_rate for calculation
   def bill_per_second
-    self.billing_rate / (60 * 60)
+    billing_rate.present? ? billing_rate / (60 * 60) : 0
+  end
+
+  # Amount billable per minute from billing_rate for calculation
+  def bill_per_minute
+    billing_rate.present? ? billing_rate / 60 : 0
   end
 
 end

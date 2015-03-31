@@ -13,14 +13,14 @@ class Report < ActiveRecord::Base
     return total
   end
   
-  def total_billeable
-    time = self.total_duration
-    if self.reportable.try(:bill_per_second)
+  def total_billable
+    time = total_duration
+    if self.reportable.try(:bill_per_minute)
       # If the report is for a client
-      rate = self.reportable.try(:bill_per_second)
+      rate = self.reportable.try(:bill_per_minute)
     else
       # If reportable belongs to client
-      rate = self.reportable.client.try(:bill_per_second)
+      rate = self.reportable.client.try(:bill_per_minute)
     end
     return time * rate
   end

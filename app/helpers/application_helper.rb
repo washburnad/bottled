@@ -33,6 +33,10 @@ module ApplicationHelper
 		end
 	end
 
+	def minutes_to_hours(minutes)
+		(minutes / 60.0).round(1)
+	end
+
 	# # converts seconds to a H:MM
 	# def time_in_h_mm(seconds)
 	# 	if !seconds.nil?
