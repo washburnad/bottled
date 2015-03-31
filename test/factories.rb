@@ -27,12 +27,18 @@ FactoryGirl.define do
     end
   end
 
+  factory :event do 
+    sequence :name do |n|
+      "Event#{n}"
+    end
+    start_time Time.now
+  end
+
   factory :report do 
-    
+    name 'Report name'
   end 
 
   factory :collaboration do 
 
   end
-
 end

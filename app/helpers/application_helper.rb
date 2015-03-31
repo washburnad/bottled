@@ -1,13 +1,4 @@
 module ApplicationHelper
-
-	def mins_to_hours(minutes)
-		minutes/60.0
-	end
-
-	# def secs_to_mins(seconds)
-	# 	seconds/60.0
-	# end
-
 	# convert ruby time to a string without GMT reference
 	def timeUTC_to_date_time(time)
 		if !time.nil?
@@ -31,6 +22,10 @@ module ApplicationHelper
 		else
 			"Unknown"
 		end
+	end
+
+	def minutes_to_hours(minutes)
+		(minutes / 60.0).round(1)
 	end
 
 	# # converts seconds to a H:MM

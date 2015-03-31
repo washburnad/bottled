@@ -7,4 +7,8 @@ class Task < ActiveRecord::Base
   has_many :reports, as: :reportable
 
 	validates :name, :presence => true
+
+  def billing_rate
+    super || project.billing_rate
+  end
 end

@@ -7,4 +7,8 @@ class Project < ActiveRecord::Base
   has_many :reports, as: :reportable
 
 	validates :name, :presence => true
+
+  def billing_rate
+    super || client.billing_rate
+  end
 end
