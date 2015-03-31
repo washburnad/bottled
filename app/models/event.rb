@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
 	validates :start_time, :presence => true
 
   def amount_billable
-    client.billing_rate.present? ? client.billing_rate / 60 * duration : 0
+    client.billing_rate.present? ? client.billing_rate * duration : 0
   end
 
 end

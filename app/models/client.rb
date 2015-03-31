@@ -10,15 +10,5 @@ class Client < ActiveRecord::Base
 
   include Collaborations
   
-  # Amount billable per seconds from billing_rate for calculation
-  def bill_per_second
-    billing_rate.present? ? billing_rate / (60 * 60) : 0
-  end
-
-  # Amount billable per minute from billing_rate for calculation
-  def bill_per_minute
-    billing_rate.present? ? billing_rate / 60 : 0
-  end
-
 end
 

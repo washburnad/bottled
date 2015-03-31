@@ -25,7 +25,7 @@
             <%= number_to_currency(event.amount_billable) %>
           </td>
           <td>
-            <%= minutes_to_hours(event.duration) %><br />
+            <%= event.duration %><br />
           </td>
         </tr>
       <% end %>
@@ -35,7 +35,7 @@
       <td></td>
       <td></td>
       <td><%= number_to_currency(@report.total_billable) %></td>
-      <td><%= minutes_to_hours(@report.total_duration) %></td>
+      <td><%= @report.total_duration %></td>
     </tr>
   </table>
 </div>
