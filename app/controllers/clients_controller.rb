@@ -21,6 +21,7 @@ class ClientsController < ApplicationController
 
 	def show
 		@client = Client.find(params[:id])
+		@collaborators = @client.collaborators
 	end
 
 	def edit

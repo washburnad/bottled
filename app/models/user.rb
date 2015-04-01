@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
   end
 
   def name
-    name = first_name? ? first_name : ""
+    name = first_name.present? ? first_name : ""
     name += " " 
-    name += last_name? ? last_name : ""
+    name += last_name.present? ? last_name : ""
   end
 
 end
