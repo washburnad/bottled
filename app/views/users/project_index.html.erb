@@ -2,7 +2,9 @@
 	<h1 class='highlight'>Projects</h1>
 	<% @projects.each do |project| %>
 		<div class='item-box'>	
-			<h3><span class="glyphicon" style=" color: <%= project_client(project).glyph_color %>;  "><%= raw project_client(project).glyph_id %></span><%= link_to project.name, project_tasks_path(project) %></h3>
+			<h3>
+        <span class="glyphicon" style=" color: <%= project_client(project).glyph_color %>;  "><%= raw project_client(project).glyph_id %></span>
+        <%= link_to project.name, project_tasks_path(project) %></h3>
 		</div>
 	<% end %>	
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>

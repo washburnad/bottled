@@ -1,0 +1,19 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+	<h1 class='highlight'>My Clients</h1>
+	<% @clients.each do |client| %>
+		<div class='item-box'>	
+			<h3>
+        <span class="glyphicon" style=" color: <%= client.glyph_color %>;  "><%= raw client.glyph_id %></span>
+        <%= link_to client.name, client_path(client) %> <%= link_to 'Add Collaborator', new_user_client_collaboration_path(current_user, client), :class => 'btn-small btn-primary' %></h3>
+		</div>
+	<% end %>	
+
+  <h1 class='highlight'>My Collaborations</h1>
+    <% @collaborations.each do |collaboration| %>
+      <div class='item-box'>  
+        <%= collaboration.client.name %> <%= link_to 'Delete', user_collaboration_path(current_user, collaboration), method: :delete, :class => 'btn-small btn-primary' %></h3>
+      </div>
+    <% end %> 
+
+  <%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+</div>

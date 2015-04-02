@@ -9,6 +9,5 @@ class UsersController < ApplicationController
   def task_index
     @tasks = current_user.all_tasks
   end
-
 	
 end
