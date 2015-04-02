@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   has_many :global_reports, foreign_key: :user_id, class_name: 'Report'
   has_many :collaborations
   has_many :collaborating_clients, :through => :collaborations, :source => :client
-  has_many :collaborating_projects, :through => :collaborations, :source => 'client.projects'
-
+  has_many :collaborating_projects, :through => :collaborating_clients, :source => :projects
+  has_many :collaborating_tasks, :through => :collaborating_clients, :source => :tasks
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -29,7 +29,15 @@ class User < ActiveRecord::Base
     name += last_name.present? ? last_name : ""
   end
 
-  def all_clients
-    clients + collaborating_clients
+  def all_clients(sort = 'updated_at')
+    clients.to_a.concat(collaborating_clients.to_a).sort_by { |c| c[sort] }
+  end
+
+  def all_projects(sort = 'updated_at')
+    projects.to_a.concat(collaborating_projects.to_a).uniq.sort_by { |p| p[sort] }
+  end
+
+  def all_tasks(sort = 'updated_at')
+    tasks.to_a.concat(collaborating_tasks.to_a).uniq.sort_by { |t| t[sort] }
   end
 end
