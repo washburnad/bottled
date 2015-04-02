@@ -28,6 +28,14 @@ module ApplicationHelper
 		(minutes / 60.0).round(1)
 	end
 
+	def project_client(project)
+		project.client
+	end
+
+	def task_client(task)
+		task.project.client
+	end
+
 	# # converts seconds to a H:MM
 	# def time_in_h_mm(seconds)
 	# 	if !seconds.nil?

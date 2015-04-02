@@ -24,7 +24,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal ' ', user.name
   end
 
-  test 'Should return array of clients and collaborators' do
+  test 'Should return sorted array of clients and collaborators' do
     setup_user_clients
 
     assert_equal 3, @user.all_clients.count
