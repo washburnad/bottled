@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :reports, as: :reportable
   has_many :global_reports, foreign_key: :user_id, class_name: 'Report'
   has_many :collaborations
+  has_many :collaborating_clients, :through => :collaborations, :source => :client
+  has_many :collaborating_projects, :through => :collaborations, :source => 'client.projects'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -27,4 +29,7 @@ class User < ActiveRecord::Base
     name += last_name.present? ? last_name : ""
   end
 
+  def all_clients
+    clients + collaborating_clients
+  end
 end

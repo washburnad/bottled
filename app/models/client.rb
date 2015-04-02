@@ -10,5 +10,9 @@ class Client < ActiveRecord::Base
 
   include Collaborations
   
+  def all_projects
+    collaborating_projects = collaborations.map { |c| c.client.projects }
+    projects + collaborating_projects.flatten.uniq
+  end
 end
 
