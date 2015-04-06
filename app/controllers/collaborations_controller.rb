@@ -20,4 +20,19 @@ class CollaborationsController < ApplicationController
     redirect_to user_collaborations_path(current_user)
   end
 
+  def create
+    @client = Client.find(params[:client_id])
+    @collaboration = @client.collaborations.create(collaboration_params)
+    if @collaboration.valid?
+      redirect_to user_collaborations_path(current_user)
+    else
+      render :new, :status => :unprocessable_entity
+    end
+  end
+
+  private
+
+  def collaboration_params
+    params.require(:collaboration).permit(:user_id, :client_id)
+  end
 end

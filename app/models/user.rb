@@ -24,12 +24,11 @@ class User < ActiveRecord::Base
   end
 
   def name
-    name = first_name.present? ? first_name : ""
-    name += " " 
-    name += last_name.present? ? last_name : ""
+    "#{first_name} #{last_name}".strip
   end
 
   def all_clients(sort = 'updated_at')
+    # clients.concat(collaborating_clients).to_a.sort_by { |c| c[sort] }
     clients.to_a.concat(collaborating_clients.to_a).uniq.sort_by { |c| c[sort] }
   end
 
