@@ -5,6 +5,7 @@ class ReportsController < ApplicationController
 	def index
 		@reports = Report.all
 		@clients = current_user.clients.to_a
+		@report_html = Reports.user_clients_html(current_user)
 		
 		if params[:client_id]
 			@projects = current_user.clients.find( params[:client_id] ).projects.to_a

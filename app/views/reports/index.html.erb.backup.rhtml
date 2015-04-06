@@ -1,5 +1,14 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<div class='col-xs-12'>
+	<div class='col-xs-12 col-md-6'>
+		<h1 class='highlight'>Reports</h1>
+		<% @reports.each do |report| %>
+			<h3 class='highlight'>
+				<%= link_to report.name, report_path( report ), :class => 'nav-link vert-list' %>
+			</h3>
+		<% end %>
+	</div>
+
+	<div class='col-xs-12 col-md-6'>
 		<h1 class='highlight'>New Report</h1>
 		<input type='date' name='start_date' value='<%= time_to_date_string(Time.now-30*24*60*60) %>' />
 		<input type='date' name='end_date' value='<%= time_to_date_string(Time.now) %>' />
@@ -17,21 +26,6 @@
 		<% report_options.each do |option| %>
 			<%= link_to "#{option[0]}", '#', :id => "#{option[1]}-link", :class => 'btn btn-primary' %>
 		<% end %>
-	</div>
-
-	<div class='col-xs-12 report'>
-		<div ng-app=''>
-    	<ul>
-    		<li class='report-heading'>
-    			<span class='toggle-children'>+/-</span>
-    			<span class='name'>Name</span>
-    			<span class='description'>Description</span>
-    			<span class='duration'>Duration</span>
-    			<span class='amount'>Amount</span>
-    		</li>
-				<%= raw @report_html %>
-    	</ul>
-    </div>
 	</div>
 	
 </div>

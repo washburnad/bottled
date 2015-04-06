@@ -1,6 +1,6 @@
 @import "variables";
 
-.report-table {
+/*.report-table {
   background-color: $white;
   border: 1px solid $dark-blue;
   width: 90%;
@@ -19,6 +19,117 @@
   tr.report-totals {
     background-color: $dark-blue;
     color: $white;
+  }
+
+}*/
+
+.report {
+  font-size: 110%;
+
+  ul {
+    padding: 0;
+  }
+
+/*  li {
+    background-color: $light-blue;
+    color: $white;
+
+    &:nth-child(even) {
+      background-color: $lighter-blue;
+    }
+  }*/
+
+  li {
+    color: $white;
+
+    &.report-heading {
+
+    }
+
+    &.user {
+      background-color: $light-blue;
+    }
+
+    &.client {
+      background-color: $dark-blue;
+    }
+
+    &.project {
+      background-color: $lighter-blue;
+      color: $dark-blue;
+    }
+
+    &.task {
+      background-color: $white;
+      color: $light-blue;
+    }
+
+    &.event {
+      background-color: $light-blue;
+    }
+  }
+
+  span {
+    display: inline-block;
+    border: 1px solid $dark-blue;
+    height: 100%;
+  }
+
+  .toggle-children {
+    width: 2%;
+  }
+
+  .name {
+    width: 30%;
+  }
+
+  .description {
+    width: 40%;
+  }
+
+  .duration {
+    width: 9%;
+  }
+
+  .amount {
+    width: 15%;
+    text-align: right;
+  }
+
+  .event {
+    .name {
+      padding-left: 40px;
+    }
+    .amount {
+      padding-right: 40px;
+    }
+  }
+
+  .task {
+    .name {
+      padding-left: 30px;
+    }
+    .amount {
+      padding-right: 30px;
+    }
+  }
+
+  .project {
+    .name {
+      padding-left: 20px;
+    }
+    .amount {
+      padding-right: 20px;
+    }
+  }
+
+  .client {
+    .name {
+      padding-left: 10px;
+    }
+    .amount {
+      padding-right: 10px;
+    }
   }
 
 }
