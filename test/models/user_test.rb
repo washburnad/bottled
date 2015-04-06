@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
   test "Should return space for nil names" do 
     user = FactoryGirl.create(:user, first_name: nil, last_name: nil)
 
-    assert_equal ' ', user.name
+    assert_equal '', user.name
   end
 
   test 'Should return sorted array of clients and collaborators' do
