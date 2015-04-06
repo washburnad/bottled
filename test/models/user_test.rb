@@ -21,6 +21,34 @@ class UserTest < ActiveSupport::TestCase
   test "Should return space for nil names" do 
     user = FactoryGirl.create(:user, first_name: nil, last_name: nil)
 
-    assert_equal ' ', user.name
+    assert_equal '', user.name
+  end
+
+  test 'Should return sorted array of clients and collaborators' do
+    setup_user_clients
+
+    assert_equal 3, @user.all_clients.count
+    assert_equal 6, @user2.all_clients.count
+
+    expected = @user2.all_clients.sort_by do |client|
+      client['name']
+    end
+
+    assert_equal expected, @user2.all_clients('name'), 'Should sort clients by name'
+  end
+
+  def setup_user_clients
+    @user = FactoryGirl.create(:user)
+    @user2 = FactoryGirl.create(:user)
+    3.times do |n|
+      @user2.clients.create(name: "#{10-n} client")
+    end
+    3.times do 
+      FactoryGirl.create(:client, user_id: @user.id)
+    end
+    @user.clients.each do |client|
+      FactoryGirl.create(:collaboration, client_id: client.id, user_id: @user2.id)
+    end
+
   end
 end

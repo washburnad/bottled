@@ -19,6 +19,4 @@ module Collaborations
     collaborator_string = collaboration_params[:collaborator_string]
     collaborating_user = User.user_from_id_or_email(collaborator_string)
   end
-
-
 end

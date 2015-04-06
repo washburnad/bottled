@@ -10,6 +10,14 @@
 		<li>Phone: <%= @client.contact_phone %></li>
     <li>Hourly Bill Rate: <%= number_to_currency(@client.billing_rate) %></li>
 	</ul>
+	<% if @collaborators.present? %>
+		<h2 class='highlight'>Collaborators</h1>
+		<ul>
+			<% @collaborators.each do |c| %>
+				<li><%= c.name %> <%= c.email %></li>
+			<% end %>
+		</ul>
+	<% end %>
 	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
 	<%= link_to 'Edit', edit_client_path(@client), :class => 'btn btn-primary' %>
 	<%= link_to 'New Project', new_client_project_path(@client), :class => 'btn btn-primary' %>

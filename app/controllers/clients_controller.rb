@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 	before_action :require_authorized, only: [ :show, :edit, :update]
 
 	def index
-		@clients = current_user.clients.to_a
+		@clients = current_user.all_clients
 	end
 
 	def new
@@ -21,6 +21,7 @@ class ClientsController < ApplicationController
 
 	def show
 		@client = Client.find(params[:id])
+		@collaborators = @client.collaborators
 	end
 
 	def edit

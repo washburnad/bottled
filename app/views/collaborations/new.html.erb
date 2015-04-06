@@ -1,0 +1,9 @@
+<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+	<h1 class='highlight'>New Collaboration for <%= @client.name %></h1>
+    <%= simple_form_for :collaboration, :url => user_client_collaborations_path(current_user, @client) do |f| %>
+      <%= f.input :user_id, label: false, placeholder: 'Add collaborator id or email' %>
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    <% end %>
+
+  <%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+</div>
