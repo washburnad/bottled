@@ -2,6 +2,7 @@ class Report < ActiveRecord::Base
   belongs_to :reportable, polymorphic: true
   belongs_to :user
 
+  include Reports
 
   def total_duration
     total = 0
