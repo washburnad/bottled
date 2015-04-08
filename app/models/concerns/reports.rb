@@ -24,9 +24,8 @@ module Reports
   end
 
   def self.user_clients_html(user)
-    output = "<li id='user#{user.id}' class='user'><input type='checkbox'"
-    output += "ng-model='user#{user.id}' />#{user.name}"
-    output += "<ul ng-show='user#{user.id}'>"
+    output = "<li id='user#{user.id}' class='user'><span class='toggle-children'></span>#{user.name}"
+    output += "<ul>"
     user.clients.each do |client|
       output += Reports.client_projects_html(client)
     end
@@ -45,8 +44,8 @@ module Reports
     output += "<input type='checkbox' ng-model='task#{task.id}' /></span>"
     output += "<span class='name'>&nbsp;#{task.name}</span>"
     output += "<span class='description'>&nbsp;</span>"
-    output += "<span class='duration'>&nbsp;</span>"
-    output += "<span class='amount'>&nbsp;#{Reports.currency(100)}</span>"
+    output += "<span class='duration'>#{task.duration}</span>"
+    output += "<span class='amount'>&nbsp;#{Reports.currency(task.amount_billable)}</span>"
     output += "</li><ul ng-show='task#{task.id}'>"
   end
 
@@ -55,8 +54,8 @@ module Reports
     output += "<input type='checkbox' ng-model='project#{project.id}' /></span>"
     output += "<span class='name'>&nbsp;#{project.name}</span>"
     output += "<span class='description'>&nbsp;</span>"
-    output += "<span class='duration'>&nbsp;</span>"
-    output += "<span class='amount'>&nbsp;#{Reports.currency(100)}</span>"
+    output += "<span class='duration'>#{project.duration}</span>"
+    output += "<span class='amount'>&nbsp;#{Reports.currency(project.amount_billable)}</span>"
     output += "</li><ul ng-show='project#{project.id}'>"
   end
 
@@ -65,8 +64,8 @@ module Reports
     output += "<input type='checkbox' ng-model='client#{client.id}' /></span>"
     output += "<span class='name'>&nbsp;#{client.name}</span>"
     output += "<span class='description'>&nbsp;</span>"
-    output += "<span class='duration'>&nbsp;</span>"
-    output += "<span class='amount'>&nbsp;#{Reports.currency(100)}</span>"
+    output += "<span class='duration'>#{client.duration}</span>"
+    output += "<span class='amount'>&nbsp;#{Reports.currency(client.amount_billable)}</span>"
     output += "</li><ul ng-show='client#{client.id}'>"
   end
 
