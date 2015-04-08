@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
   end
 
   def all_clients(sort = 'updated_at')
-    # clients.concat(collaborating_clients).to_a.sort_by { |c| c[sort] }
     clients.to_a.concat(collaborating_clients.to_a).uniq.sort_by { |c| c[sort] }
   end
 
@@ -38,5 +37,13 @@ class User < ActiveRecord::Base
 
   def all_tasks(sort = 'updated_at')
     tasks.to_a.concat(collaborating_tasks.to_a).uniq.sort_by { |t| t[sort] }
+  end
+
+  def amount_billable
+    events.to_a.sum(&:amount_billable)
+  end
+
+  def duration
+    events.to_a.sum(&:duration)
   end
 end

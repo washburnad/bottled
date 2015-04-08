@@ -14,5 +14,14 @@ class Client < ActiveRecord::Base
     collaborating_projects = collaborations.map { |c| c.client.projects }
     projects + collaborating_projects.flatten.uniq
   end
+
+  def amount_billable
+    events.to_a.sum(&:amount_billable)
+  end
+
+  def duration
+    events.to_a.sum(&:duration)
+  end
+  
 end
 
