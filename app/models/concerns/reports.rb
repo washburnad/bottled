@@ -40,13 +40,13 @@ module Reports
   end
 
   def self.task_html(task)
-    output = "<li id='task#{task.id}' class='task'><span class='toggle-children'>"
-    output += "<input type='checkbox' ng-model='task#{task.id}' /></span>"
-    output += "<span class='name'>&nbsp;#{task.name}</span>"
-    output += "<span class='description'>&nbsp;</span>"
-    output += "<span class='duration'>#{task.duration}</span>"
-    output += "<span class='amount'>&nbsp;#{Reports.currency(task.amount_billable)}</span>"
-    output += "</li><ul ng-show='task#{task.id}'>"
+    %Q( "<li id='task#{task.id}' class='task'><span class='toggle-children'>
+      <input type='checkbox' ng-model='task#{task.id}' /></span>
+      <span class='name'>&nbsp;#{task.name}</span>
+      <span class='description'>&nbsp;</span>
+      <span class='duration'>#{task.duration}</span>
+      <span class='amount'>&nbsp;#{Reports.currency(task.amount_billable)}</span>
+      </li><ul ng-show='task#{task.id}'>" )
   end
 
   def self.project_html(project)

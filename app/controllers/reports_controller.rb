@@ -24,7 +24,9 @@ class ReportsController < ApplicationController
 
 	def show 
 		@report = Report.find(params[:id])
-		@context = context(@report)
+	
+		@context = render_report(@report)
+
 		if @context.nil?
 			redirect_to reports_path
 		end
@@ -79,19 +81,19 @@ class ReportsController < ApplicationController
 	  @unassigned = Report.where( reportable_id: nil ).destroy_all
 	end
 
-	def context( reportable )
+	def render_report( reportable )
 		type = reportable.reportable_type
 		id = reportable.reportable_id
 		case type
 		when 'User'
-			@context = User.find(id)
+			@user = User.find(id)
 		when 'Client'
-			@context = Client.find(id)
+			@client = Client.find(id)
 		when 'Project'
-			@context = Project.find(id)
+			@project = Project.find(id)
 		when 'Task'
-			@context = Task.find(id)
+			@task = Task.find(id)
+		else return nil
 		end
-
 	end
 end

@@ -1,0 +1,18 @@
+<% client ||= @client %>
+<li id='client<%= client.id %>' class='client'>
+  <span class='toggle-children'>
+    <input type='checkbox' ng-model='client<%= client.id %>' />
+  </span>
+  <span class='name'>&nbsp;<%= client.name %></span>
+  <span class='description'>&nbsp;</span>
+  <span class='duration'><%= client.duration %></span>
+  <span class='amount'>
+    &nbsp;<%= Reports.currency(client.amount_billable) %>
+  </span>
+</li>
+<ul ng-show='client<%= client.id %>'>
+  <% client.projects.each do |project| %>
+    <%= render partial: 'report_project', 
+    locals: { project: project } %>
+  <% end %>
+</ul>

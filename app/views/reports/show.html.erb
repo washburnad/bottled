@@ -1,41 +1,26 @@
 <div class='float-box col-xs-10 col-xs-offset-1'>
   <h1 class='highlight'><%= link_to @report.name, report_path(@report) %></h1>
   <h3 class='highlight'>A <%= @report.reportable_type %> report for <%= @context.name %></h3>
-  <table class="report-table">
-    <tr class="report-header">
-      <th class="Date">Date</th>
-      <th class="Name">Name</th>
-      <th class="Description">Description</th>
-      <th class="Amount Billed">Billeable Amount</th>
-      <th class="Duration">Duration(hrs)</th>
-    </tr>
-    <% @context.events.each do |event| %>
-      <% if !event.name.nil? %>
-        <tr>
-          <td>
-            <%= timeUTC_to_date(event.start_time) %>
-          </td>
-          <td>
-            <%= link_to event.name, task_event_path(event.task, event), target: '_blank' %><br />
-          </td>
-          <td>
-            <%= event.description %><br />
-          </td>
-          <td>
-            <%= number_to_currency(event.amount_billable) %>
-          </td>
-          <td>
-            <%= event.duration %><br />
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-    <tr class="report-totals">
-      <td>Total</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= @report.total_duration %></td>
-    </tr>
-  </table>
+  <div class='col-xs-12 report'>
+    <div ng-app=''>
+      <ul>
+        <li class='report-heading'>
+          <span class='toggle-children'>+/-</span>
+          <span class='name'>Name</span>
+          <span class='description'>Description</span>
+          <span class='duration'>Duration</span>
+          <span class='amount'>Amount</span>
+        </li>
+        <% if @user.present? %>
+          <%= render partial: 'report_user' %>
+        <% elsif @client.present? %>
+          <%= render partial: 'report_client' %>
+        <% elsif @project.present? %>
+          <%= render partial: 'report_project' %>
+        <% elsif %>
+          <%= render partial: 'report_task' %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
