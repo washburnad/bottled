@@ -18,21 +18,6 @@
 			<%= link_to "#{option[0]}", '#', :id => "#{option[1]}-link", :class => 'btn btn-primary' %>
 		<% end %>
 	</div>
-
-	<div class='col-xs-12 report'>
-		<div ng-app=''>
-    	<ul>
-    		<li class='report-heading'>
-    			<span class='toggle-children'>+/-</span>
-    			<span class='name'>Name</span>
-    			<span class='description'>Description</span>
-    			<span class='duration'>Duration</span>
-    			<span class='amount'>Amount</span>
-    		</li>
-				<%= raw @report_html %>
-    	</ul>
-    </div>
-	</div>
 	
 </div>
 <script>
@@ -40,11 +25,13 @@ $(document).on('ready page:load', function() {
 
 var start_date, end_date;
 
+	// get most recent values of report variables
 	function updateVariables() {
 		start_date = $("input[name='start_date']").val();
 		end_date = $("input[name='end_date']").val();
 	}
 
+	// send AJAX post
 	function sendAJAX( type, id, name ) {
 		$.ajax({
 				type: 'post',
@@ -68,11 +55,13 @@ var start_date, end_date;
 
 	}
 
+	// return a string for a default report name
 	function getName(type_string) {
 		return_string = type_string+" report: "+start_date+" to "+end_date;
 		return return_string
 	}
 
+	// get the task list for the select tag
 	function getTaskSelect() {
 		var project_id = $("#projects-select").val();
 		$.ajax({
@@ -85,6 +74,7 @@ var start_date, end_date;
 		        });
 	}
 
+	// when a client is selected, send and AJAX call to get projects
 	$('#clients-select').change( function () {
 		var client_id = $("#clients-select").val();
 		$.ajax({
@@ -101,6 +91,7 @@ var start_date, end_date;
 
 	});
 
+	// link to create a client report
 	$('#client-link').click( function() {
 		updateVariables();
 		var name = getName('Client');
@@ -111,6 +102,7 @@ var start_date, end_date;
 
 	});
 
+	// link to create a project report
 	$('#project-link').click( function() {
 		updateVariables();
 		var name = getName('Project');
@@ -121,6 +113,7 @@ var start_date, end_date;
 
 	});	
 
+	// link to create a user report
 	$('#task-link').click( function() {
 		updateVariables();
 		var name = getName('Task');

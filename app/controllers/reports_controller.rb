@@ -3,9 +3,8 @@ class ReportsController < ApplicationController
 	before_action :remove_unassigned! , :only => [:index]
 
 	def index
-		@reports = Report.all
+		@report = Report.new
 		@clients = current_user.clients.to_a
-		@report_html = Reports.user_clients_html(current_user)
 		
 		if params[:client_id]
 			@projects = current_user.clients.find( params[:client_id] ).projects.to_a
@@ -24,7 +23,9 @@ class ReportsController < ApplicationController
 
 	def show 
 		@report = Report.find(params[:id])
-		@context = context(@report)
+	
+		@context = render_report(@report)
+
 		if @context.nil?
 			redirect_to reports_path
 		end
@@ -43,8 +44,9 @@ class ReportsController < ApplicationController
 	def create
 		@report = Report.create
 		@report.update_attributes(create_params)
+		@report.update_attributes(user_id: current_user.id)
 		if @report.valid?
-			render :json => { redirect_url: report_path(@report) }
+			render json: { redirect_url: report_path(@report) }
 		else
 			render :text, :status => :unprocessable_entity
 		end
@@ -70,7 +72,6 @@ class ReportsController < ApplicationController
 		@create_params = params.permit(:name, :reportable_type, :reportable_id, :start_date, :end_date)
 	end
 
-
 	# def query_params
 	# 	@query_params = params.permit(:client_id, :project_id)
 	# end
@@ -79,19 +80,19 @@ class ReportsController < ApplicationController
 	  @unassigned = Report.where( reportable_id: nil ).destroy_all
 	end
 
-	def context( reportable )
+	def render_report( reportable )
 		type = reportable.reportable_type
 		id = reportable.reportable_id
 		case type
 		when 'User'
-			@context = User.find(id)
+			@user = User.find(id)
 		when 'Client'
-			@context = Client.find(id)
+			@client = Client.find(id)
 		when 'Project'
-			@context = Project.find(id)
+			@project = Project.find(id)
 		when 'Task'
-			@context = Task.find(id)
+			@task = Task.find(id)
+		else return nil
 		end
-
 	end
 end
