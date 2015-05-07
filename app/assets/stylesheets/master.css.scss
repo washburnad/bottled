@@ -1,6 +1,7 @@
 
+
 /*  STRUCTURAL */
-$dark-blue: #48516a;
+$dark-blue: #626f91;
 $light-blue: #7286b2;
 $white: #ffffff;
 $gray: #888888;
@@ -40,8 +41,11 @@ nav.navbar-default {
 	.navbar-nav > li > a {
 		color: $light-blue;
 	}
-	
-	
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	color: $dark-blue;
 }
 
 /* GLOBAL STYLES */
@@ -281,6 +285,10 @@ form{
 
 	.glyphicon {
 		font-size: 200%;
+	}
+
+	a .glyphicon {
+		font-size: 100%;
 	}
 
 }
