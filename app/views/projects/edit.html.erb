@@ -4,7 +4,7 @@
 	<%= simple_form_for @project, :url => client_project_path(current_client, @project), :method => :put do |f| %>
 		<%= f.input :name %>
 		<%= f.input :description %>
-		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+    <%= render 'shared/back' %>
 		<%= f.submit 'Save', :class => 'btn btn-primary' %>
 	<% end %>
 </div>

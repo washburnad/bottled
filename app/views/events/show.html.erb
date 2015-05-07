@@ -9,10 +9,8 @@
 		Duration: <%= number_with_precision(@event.duration, precision: 2) %> hours<br />
 		Date: <%= timeUTC_to_date(@event.start_time) %><br />
 		Start Time: <%= timeUTC_to_time(@event.start_time) %><br />
-		
-		
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= f.submit 'Save', :class => 'btn btn-primary' %>
+	<%= f.submit 'Save', :class => 'btn btn-primary' %>		
+  <%= render 'shared/back' %>
 	<% end %>
 	
 </div>
