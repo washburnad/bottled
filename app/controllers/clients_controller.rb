@@ -20,8 +20,9 @@ class ClientsController < ApplicationController
 	end
 
 	def show
-		@client = Client.find(params[:id])
+		@client = Client.includes(:projects).find params[:id]
 		@collaborators = @client.collaborators
+		@projects = @client.projects
 	end
 
 	def edit

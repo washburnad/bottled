@@ -1,7 +1,7 @@
 
 /*  STRUCTURAL */
 $dark-blue: #48516a;
-$light-blue: #607196;
+$light-blue: #7286b2;
 $white: #ffffff;
 $gray: #888888;
 $black: #000000;
@@ -21,7 +21,7 @@ body {
 	background-size: 100%;
 
 	font-family: 'Armata-Regular', sans-serif;
-	color: #607196;
+	color: $light-blue;
 
 }
 
@@ -61,6 +61,10 @@ h2 {
 
 h3 {
 	font-size: 14px;
+	a.add-new {
+		color: $white;
+		font-style: italic;
+	}
 }
 
 ul {
@@ -119,15 +123,6 @@ input[type='date'] {
 	outline: none;
 }
 
-/*.nav-link {
-	font-size: 16px;
-	color: #607196;
-	&:hover {
-		color: #48516a;
-	}
-
-}*/
-
 .vert-list {
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -172,11 +167,6 @@ h1 .h1-small {
 
 		&:hover {
 			color: $dark-blue;
-		}
-
-		&.add-new {
-			color: $white;
-			font-style: italic;
 		}
 	}
 

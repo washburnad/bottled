@@ -6,7 +6,7 @@
 				<% @clients.each do |client| %>
 					<h3 class='highlight'>
 						<span class="glyphicon" style=" color: <%= client.glyph_color %>;	"><%= raw client.glyph_id %></span>
-						<%= link_to client.name, client_projects_path(client), :class => 'nav-link vert-list' %>
+						<%= link_to client.name, client_path(client), :class => 'nav-link vert-list' %>
 					<h3>
 				<% end %>
 			</div>

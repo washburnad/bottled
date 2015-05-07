@@ -1,25 +1,39 @@
-<div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
+<div class='float-box col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2'>
 	<h1 class='highlight'>
-		<%= link_to @client.name, client_projects_path(@client) %>
+		<%= @client.name %>
 		<span class="glyphicon" style=" color: <%= @client.glyph_color %>;	"><%= raw @client.glyph_id %></span>
 	</h1>
-	<ul>
-		<li>Contact Name: <%= @client.contact_name %></li>
-		<li>Title: <%= @client.contact_title %></li>
-		<li>Email: <%= @client.contact_email %></li>
-		<li>Phone: <%= @client.contact_phone %></li>
-    <li>Hourly Bill Rate: <%= number_to_currency(@client.billing_rate) %></li>
-	</ul>
-	<% if @collaborators.present? %>
-		<h2 class='highlight'>Collaborators</h1>
+	<div class='col-xs-12 col-sm-6'>
+		<h2 class='highlight'>Projects</h1>
+			<div class='item-box'>	
+				<% @projects.each do |project| %>
+					<h3><%= link_to project.name, project_tasks_path(project) %></h3>
+				<% end %>
+				<h3>
+					<%= link_to '+ Add New Project', new_client_project_path(current_client), class: 'add-new' %>
+				</h3>
+			</div>
+	</div>
+	<div class='col-xs-12 col-sm-6'>
+		<h2 class='highlight'>Client Info</h2>
 		<ul>
-			<% @collaborators.each do |c| %>
-				<li><%= c.name %> <%= c.email %></li>
-			<% end %>
+			<li>Contact Name: <%= @client.contact_name %></li>
+			<li>Title: <%= @client.contact_title %></li>
+			<li>Email: <%= @client.contact_email %></li>
+			<li>Phone: <%= @client.contact_phone %></li>
+	    <li>Hourly Bill Rate: <%= number_to_currency(@client.billing_rate) %></li>
 		</ul>
-	<% end %>
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= link_to 'Edit', edit_client_path(@client), :class => 'btn btn-primary' %>
-	<%= link_to 'New Project', new_client_project_path(@client), :class => 'btn btn-primary' %>
-	<%= link_to 'Projects', client_projects_path(@client), :class => 'btn btn-primary' %>
+		<h3>
+		<%= link_to '- Edit', edit_client_path(@client), class: 'add-new' %>
+		</h3>
+		<% if @collaborators.present? %>
+			<h2 class='highlight'>Collaborators</h1>
+			<ul>
+				<% @collaborators.each do |c| %>
+					<li><%= c.name %> <%= c.email %></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</div>
+	<h3><%= link_to '<- Back', :back, class: 'add-new' %></h3>
 </div>
