@@ -1,6 +1,8 @@
 Bottled::Application.routes.draw do
   devise_for :users
-  root 'home#index'
+  root 'home#about'
+  get 'index', to: 'home#index'
+  get 'about', to: 'home#about'
   resources :reports
   resources :clients do
     resources :projects

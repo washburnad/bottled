@@ -9,4 +9,9 @@ class HomeControllerTest < ActionController::TestCase
     get :index
     assert :success
   end
+
+  test "Should render about" do
+    get :about
+    assert :success
+  end
 end

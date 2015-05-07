@@ -8,4 +8,7 @@ class HomeController < ApplicationController
 		  @reports = current_user.global_reports.order("updated_at").to_a.last(5).reverse
     end
 	end
+
+  def about
+  end
 end
