@@ -32,9 +32,8 @@
 					<% end %>
 				</ul>
 			<% end %>
-			<h3>
-			<%= link_to '- Edit', edit_client_path(@client), class: 'add-new' %>
-			</h3>
+			<%= render  partial: 'shared/edit', 
+									locals: { path: edit_client_path(@client) } %>
 		</div>
 	</div>
 	<%= render 'shared/back' %>

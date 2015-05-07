@@ -24,9 +24,10 @@
 				<li>Project Name:<%= @project.name %></li>
 				<li>Description:<%= @project.description %></li>
 			</ul>
-		<h3>
-		<%= link_to '- Edit', edit_client_project_path(current_client,@project), class: 'add-new' %>
-		</h3>
+		<%= render  partial: 'shared/edit', 
+								locals: {
+									path: edit_client_project_path(current_client,@project) 
+								} %>
 		</div>
 	</div>
 	<%= render 'shared/back' %>
