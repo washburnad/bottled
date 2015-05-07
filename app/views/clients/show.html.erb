@@ -11,7 +11,11 @@
 						<h3><%= link_to project.name, client_project_path(current_client, project) %></h3>
 					<% end %>
 					<h3>
-						<%= link_to '+ Add New Project', new_client_project_path(current_client), class: 'add-new' %>
+						<%= render  partial: 'shared/add', 
+												locals: {
+													path: new_client_project_path(current_client),
+													item_to_add: 'New Project'
+												} %>
 					</h3>
 				</div>
 		</div>
@@ -33,7 +37,8 @@
 				</ul>
 			<% end %>
 			<h3>
-			<%= link_to '- Edit', edit_client_path(@client), class: 'add-new' %>
+				<%= render  partial: 'shared/edit', 
+										locals: { path: edit_client_path(@client) } %>
 			</h3>
 		</div>
 	</div>
