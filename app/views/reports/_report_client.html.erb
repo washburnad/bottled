@@ -6,8 +6,9 @@
   <span class='name'>&nbsp;<%= client.name %></span>
   <span class='description'>&nbsp;</span>
   <span class='duration'><%= client.duration %></span>
-  <span class='amount'>
-    &nbsp;<%= Reports.currency(client.amount_billable) %>
+  <span class='amount'></span>
+  <span class='subtotal'>&nbsp;
+    <%= Reports.currency(client.amount_billable) %>
   </span>
 </li>
 <ul ng-show='client<%= client.id %>'>
