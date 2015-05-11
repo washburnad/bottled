@@ -41,13 +41,15 @@
 
   li {
     color: $white;
+    border-bottom: 1px solid $dark-blue;
 
     &.report-heading {
 
     }
 
     &.user {
-      background-color: $light-blue;
+      background-color: $dark-blue;
+      color: $white;
     }
 
     &.client {
@@ -55,24 +57,26 @@
     }
 
     &.project {
-      background-color: $lighter-blue;
-      color: $dark-blue;
+      background-color: $light-blue;
+      color: $white;
     }
 
     &.task {
-      background-color: $white;
-      color: $light-blue;
+      background-color: $lighter-blue;
+      color: $white;
     }
 
     &.event {
-      background-color: $light-blue;
+      background-color: $white;
+      color: $light-blue;
     }
   }
 
   span {
     display: inline-block;
-    border: 1px solid $dark-blue;
-    height: 100%;
+    height: 24px;
+    overflow: hidden;
+    vertical-align: -11px;
   }
 
   .toggle-children {
@@ -80,18 +84,24 @@
   }
 
   .name {
-    width: 30%;
+    width: 25%;
   }
 
   .description {
-    width: 40%;
+    width: 20%;
   }
 
   .duration {
     width: 9%;
+    text-align: right;
   }
 
   .amount {
+    width: 15%;
+    text-align: right;
+  }
+
+  .subtotal {
     width: 15%;
     text-align: right;
   }
@@ -100,17 +110,11 @@
     .name {
       padding-left: 40px;
     }
-    .amount {
-      padding-right: 40px;
-    }
   }
 
   .task {
     .name {
       padding-left: 30px;
-    }
-    .amount {
-      padding-right: 30px;
     }
   }
 
@@ -118,18 +122,11 @@
     .name {
       padding-left: 20px;
     }
-    .amount {
-      padding-right: 20px;
-    }
   }
 
   .client {
     .name {
       padding-left: 10px;
     }
-    .amount {
-      padding-right: 10px;
-    }
   }
-
 }
