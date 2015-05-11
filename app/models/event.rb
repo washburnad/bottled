@@ -11,4 +11,7 @@ class Event < ActiveRecord::Base
     client.billing_rate.present? ? client.billing_rate * duration : 0
   end
 
+  def duration
+    super || 0
+  end
 end
