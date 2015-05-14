@@ -57,6 +57,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-size: 24px;
+	color: $white;
 }
 
 h2 {
@@ -76,7 +77,7 @@ ul {
 }
 
 a {
-	color: $light-blue;
+	color: inherit;
 
 	&:hover {
 		margin-left: 2px;
@@ -173,7 +174,6 @@ h1 .h1-small {
 			color: $dark-blue;
 		}
 	}
-
 }
 
 .timer-box {

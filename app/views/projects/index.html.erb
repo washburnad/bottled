@@ -1,14 +1,19 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'>
+	<h1>
 		<%= link_to current_client.name, client_path(current_client) %>
   	<span class="glyphicon" style=" color: <%= current_client.glyph_color %>;	"><%= raw current_client.glyph_id %></span>
   </h1>
 	<div class='item-box'>	
-		<% @projects.each do |project| %>
-			<h3><%= link_to project.name, project_tasks_path(project) %></h3>
-		<% end %>
+		<%= render partial: 'shared/projects',
+			locals: {
+				projects: @projects
+			} %>
 		<h3>
-			<%= link_to '+ Add New Project', new_client_project_path(current_client), class: 'add-new' %>
+			<%= render  partial: 'shared/add', 
+				locals: {
+				path: new_client_project_path(current_client),
+				item_to_add: 'New Project'
+				} %>
 		</h3>
 	</div>
 	<%= render 'shared/back' %>
