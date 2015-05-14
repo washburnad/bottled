@@ -5,12 +5,14 @@
   </h1>
   <h2 class='highlight'><%= link_to current_project.name, client_project_path(current_client, current_project) %></h2>
 	<div class='item-box'>	
-	 <% @tasks.each do |task| %>
-  		<h3><%= link_to task.name, project_task_path(current_project, task) %></h3>
-    <% end %>
-    <h3>
-      <%= link_to '+ Add New Task', new_project_task_path(current_project), class: 'add-new' %>
-    </h3>
+	<%= render partial: 'shared/tasks',
+    locals: {
+      tasks: @tasks,
+      include_glyph: false
+    } %>
+  <h3>
+    <%= link_to '+ Add New Task', new_project_task_path(current_project), class: 'add-new' %>
+  </h3>
   </div>
   <%= render 'shared/back' %>
 </div>

@@ -1,5 +1,5 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2'>
-	<h1 class='highlight'>
+	<h1>
 		<%= @client.name %>
 		<span class="glyphicon" style=" color: <%= @client.glyph_color %>;	"><%= raw @client.glyph_id %></span>
 	</h1>
@@ -7,9 +7,11 @@
 		<div class='col-xs-12 col-sm-6'>
 			<h2 class='highlight'>Projects</h2>
 				<div class='item-box'>	
-					<% @projects.each do |project| %>
-						<h3><%= link_to project.name, client_project_path(current_client, project) %></h3>
-					<% end %>
+					<%= render partial: 'shared/projects',
+					  locals: {
+					    projects: @projects,
+					    include_glyph: false
+					  } %>
 					<h3>
 						<%= render  partial: 'shared/add', 
 												locals: {

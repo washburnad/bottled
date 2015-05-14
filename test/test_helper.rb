@@ -23,8 +23,6 @@ class ActiveSupport::TestCase
     @user2 = FactoryGirl.create(:user)
     sign_in @user2
   end
-
-
 end
 
 class ActionController::TestCase

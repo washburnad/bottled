@@ -1,11 +1,10 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'>Projects</h1>
-	<% @projects.each do |project| %>
-		<div class='item-box'>	
-			<h3>
-        <span class="glyphicon" style=" color: <%= project_client(project).glyph_color %>;  "><%= raw project_client(project).glyph_id %></span>
-        <%= link_to project.name, project_tasks_path(project) %></h3>
-		</div>
-	<% end %>	
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+	<h1>Projects</h1>
+	<div class='item-box'> 
+    <%= render partial: 'shared/projects',
+      locals: {
+        projects: @projects
+      } %>
+	</div>
+  <%= render 'shared/back' %>
 </div>
