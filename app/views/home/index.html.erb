@@ -2,12 +2,10 @@
 	<% if current_user %>
 		<div class='col-xs-12 col-sm-6'>
 			<h1><%= link_to 'Clients', clients_path, :class => 'nav-link' %></h1>
-			<% @clients.each do |client| %>
-				<h3>
-					<span class="glyphicon" style=" color: <%= client.glyph_color %>;	"><%= raw client.glyph_id %></span>
-					<%= link_to client.name, client_path(client), :class => 'nav-link vert-list' %>
-				<h3>
-			<% end %>
+			<%= render partial: 'shared/clients',
+				locals: {
+					clients: @clients
+				} %>
 		</div>
 		<div class='col-xs-12 col-sm-6'>
 			<h1><%= link_to 'Projects', user_projects_path(current_user), :class => 'nav-link ' %></h1>
@@ -26,12 +24,10 @@
 		</div>
 		<div class='col-xs-12 col-sm-6'>
 			<h1><%= link_to 'Reports', reports_path, :class => 'nav-link ' %></h1>
-			<% @reports.each do |report| %>
-				<h3>
-					<span class="glyphicon" style=" color: <%= report.reportable.client.glyph_color %>;	"><%= raw report.reportable.client.glyph_id %></span>
-					<%= link_to report.name, report_path( report ), :class => 'nav-link vert-list' %>
-				</h3>
-			<% end %>
+			<%= render partial: 'shared/reports',
+				locals: {
+					reports: @reports
+				} %>
 		</div>
 		<div class='clr'></div>
 <!-- 		<div class='col-xs-12 col-sm-4'>
