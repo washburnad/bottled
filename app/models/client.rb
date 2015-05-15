@@ -19,6 +19,10 @@ class Client < ActiveRecord::Base
     events.to_a.sum(&:amount_billable)
   end
 
+  def client
+    self
+  end
+
   def duration
     events.to_a.sum(&:duration)
   end

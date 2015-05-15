@@ -28,12 +28,14 @@ module ApplicationHelper
 		(minutes / 60.0).round(1)
 	end
 
-	def project_client(project)
-		project.client
+	def task_client(task)
+		task.client
 	end
 
-	def task_client(task)
-		task.project.client
+	def glyph_for(client)
+		%Q( <span class='glyphicon' 
+      style='color: #{client.glyph_color}'>
+      #{client.glyph_id}</span> )
 	end
 
 	# # converts seconds to a H:MM
