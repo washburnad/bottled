@@ -65,7 +65,10 @@ h2 {
 }
 
 h3 {
-	font-size: 14px;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	height: 1.2em;
+	overflow: hidden;
 	a.add-new {
 		color: $white;
 		font-style: italic;

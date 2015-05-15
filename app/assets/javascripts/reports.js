@@ -24,8 +24,7 @@ $(document).on('ready page:load', function() {
   }
 
   // return a string for a default report name
-  function getName(type_string) {
-    var date = getDates();
+  function getName(type_string, date) {
     return_string = type_string + " report: " + date.start + " to " + date.end;
     return return_string
   }
@@ -65,7 +64,7 @@ $(document).on('ready page:load', function() {
   // link to create a client report
   $('#client-link').click( function() {
     var date = getDates();
-    var name = getName('Client');
+    var name = getName('Client', date);
     var client_id = $('#client_name').val();
     var data = {
       name: name,
@@ -82,7 +81,7 @@ $(document).on('ready page:load', function() {
   // link to create a project report
   $('#project-link').click( function() {
     var date = getDates();
-    var name = getName('Project');
+    var name = getName('Project', date);
     var project_id = $('#projects-select').val();
     var data = {
       name: name,
@@ -100,7 +99,7 @@ $(document).on('ready page:load', function() {
   // link to create a user report
   $('#task-link').click( function() {
     var date = getDates();
-    var name = getName('Task');
+    var name = getName('Task', date);
     var task_id = $('#tasks-select').val();
     var data = {
       name: name,
