@@ -1,8 +1,8 @@
 <h3>
-	<select name='clients-select' id='clients-select'>
-		<option value='' disabled='disabled' selected='selected'>Select client...</option>
-		<% @clients.each do |client| %>
-			<option value='<%= client.id %>'><%= client.name %></option>
-		<% end %>
-	</select>
+  <select name='client_name' id='client_name'>
+    <option value='' disabled='disabled' selected='selected'>Select client...</option>
+    <% @clients.each do |client| %>
+      <option value='<%= client.id %>'><%= client.name %></option>
+    <% end %>
+  </select>
 </h3>
