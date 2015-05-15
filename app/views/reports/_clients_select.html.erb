@@ -1,8 +1,10 @@
 <h3>
-	<select name='clients-select' id='clients-select'>
-		<option value='' disabled='disabled' selected='selected'>Select client...</option>
-		<% @clients.each do |client| %>
-			<option value='<%= client.id %>'><%= client.name %></option>
-		<% end %>
-	</select>
+  <%= collection_select(
+    :client, 
+    :name, 
+    Client.all, 
+    :id, 
+    :name, 
+    {include_blank: 'Select client...', disabled: 'Select client...' }
+    ) %>
 </h3>

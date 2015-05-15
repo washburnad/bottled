@@ -1,6 +1,5 @@
 $(document).on('ready page:load', function() { 
-
-var start_date, end_date;
+  var start_date, end_date;
 
   // get most recent values of report variables
   function updateVariables() {
@@ -52,8 +51,9 @@ var start_date, end_date;
   }
 
   // when a client is selected, send and AJAX call to get projects
-  $('#clients-select').change( function () {
-    var client_id = $("#clients-select").val();
+  $('#client_name').change( function () {
+    var client_id = $("#client_name").val();
+    
     $.ajax({
               type: 'get',
               url: 'reports',
@@ -72,7 +72,7 @@ var start_date, end_date;
   $('#client-link').click( function() {
     updateVariables();
     var name = getName('Client');
-    var client_id = $('#clients-select').val();
+    var client_id = $('#client_name').val();
     if (client_id) {
       sendAJAX( 'Client', client_id, name );
     }

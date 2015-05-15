@@ -1,4 +1,3 @@
-
 $(document).on('ready page:load', function() {
 	// initiate global variables
 	var pauseElement = $('#pause');
