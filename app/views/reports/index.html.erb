@@ -4,14 +4,15 @@
 		<input type='date' name='start_date' value='<%= time_to_date_string(Time.now-30*24*60*60) %>' />
 		<input type='date' name='end_date' value='<%= time_to_date_string(Time.now) %>' />
 		
-		
-		<div id='clients-select-div' >
-			<%= render 'clients_select' %>
-		</div>
-		<div id='projects-select-div'>
-		</div>
-		<div id='tasks-select-div'>
-		</div>	
+		<%= form_for @report do |f| %>
+			<div id='clients-select-div' >
+				<%= render 'clients_select' %>
+			</div>
+			<div id='projects-select-div'>
+			</div>
+			<div id='tasks-select-div'>
+			</div>	
+		<% end %>
 		<%= link_to 'Back', :back, :class => 'btn btn-primary' %><br />
 		<h3 class='highlight'>Generate Report</h3>
 		<% report_options.each do |option| %>

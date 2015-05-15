@@ -1,6 +1,9 @@
 $(document).on('ready page:load', function() { 
   var $projects_select_div = $('#projects-select-div');
+  var $projects_select = $('#projects-select');
   var $tasks_select_div = $('#tasks-select-div');
+  var $tasks_select = $('#tasks-select');
+  var $client_name = $('#client_name');
 
   // get most recent values of report variables
   function getDates() {
@@ -11,7 +14,7 @@ $(document).on('ready page:load', function() {
   }
 
   // send AJAX post
-  function sendAJAX( data ) {
+  function sendReportAJAX( data ) {
     $.ajax({
       type: 'post',
       url: 'reports',
@@ -31,41 +34,45 @@ $(document).on('ready page:load', function() {
 
   // get the task list for the select tag
   function getTaskSelect() {
-    var project_id = $("#projects-select").val();
-    $.ajax({
-      type: 'get',
-      url: 'reports',
-      dataType: 'html',
-      data: { project_id: project_id },
-      success: function(data) { 
-        $('#tasks-select-div').html( data );
-      }
-    });
+    var project_id = $projects_select.val();
+    sendAJAXData( { project_id: project_id } , getTaskSelectSuccess );
   }
 
-  // when a client is selected, send and AJAX call to get projects
-  $('#client_name').change( function () {
-    var client_id = $("#client_name").val();
-    
+  // get the project list for the select tag
+  function getProjectSelect() {
+    var client_id = $client_name.val();
+    sendAJAXData( { client_id: client_id } , getProjectSelectSuccess );
+  }
+
+  function sendAJAXData( data, success ) {
     $.ajax({
       type: 'get',
       url: 'reports',
       dataType: 'html',
-      data: { client_id: client_id },
-      success: function(data) { 
-        $projects_select_div.html( data );
-        $tasks_select_div.html("");
-        $('#projects-select').change( getTaskSelect )
+      data: data,
+      success: function(data) {
+        success( data );
       }
-    });
+    });  }
 
-  });
+  function getTaskSelectSuccess( data ) {
+    $tasks_select_div.html( data );
+  }
+
+  function getProjectSelectSuccess( data ) {
+    $projects_select_div.html( data );
+    $tasks_select_div.html("");
+    $projects_select.change( getTaskSelect );
+  }
+
+  // when a client is selected, send an AJAX call to get projects
+  $client_name.change( getProjectSelect );
 
   // link to create a client report
   $('#client-link').click( function() {
     var date = getDates();
     var name = getName('Client', date);
-    var client_id = $('#client_name').val();
+    var client_id = $client_name.val();
     var data = {
       name: name,
       reportable_type: 'Client',
@@ -74,7 +81,7 @@ $(document).on('ready page:load', function() {
       end_date: date.end
     };
     if (client_id) {
-      sendAJAX( data );
+      sendReportAJAX( data );
     }
   });
 
@@ -82,7 +89,7 @@ $(document).on('ready page:load', function() {
   $('#project-link').click( function() {
     var date = getDates();
     var name = getName('Project', date);
-    var project_id = $('#projects-select').val();
+    var project_id = $projects_select.val();
     var data = {
       name: name,
       reportable_type: 'Project',
@@ -91,7 +98,7 @@ $(document).on('ready page:load', function() {
       end_date: date.end
     };
     if (project_id) {
-      sendAJAX( data );
+      sendReportAJAX( data );
     }
 
   }); 
@@ -100,7 +107,7 @@ $(document).on('ready page:load', function() {
   $('#task-link').click( function() {
     var date = getDates();
     var name = getName('Task', date);
-    var task_id = $('#tasks-select').val();
+    var task_id = $tasks_select.val();
     var data = {
       name: name,
       reportable_type: 'Task',
@@ -109,7 +116,7 @@ $(document).on('ready page:load', function() {
       end_date: date.end
     };
     if (task_id) {
-      sendAJAX( data );
+      sendReportAJAX( data );
     }
 
   }); 
