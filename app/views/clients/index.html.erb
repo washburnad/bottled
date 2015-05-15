@@ -2,14 +2,16 @@
 	<h1>Clients</h1>
 
 	<div class='item-box'>	
-		<% @clients.each do |client| %>
-			<h3>
-				<span class="glyphicon" style=" color: <%= client.glyph_color %>;	"><%= raw client.glyph_id %></span>
-				<%= link_to client.name, client_projects_path(client) %>
-			</h3>
-		<% end %>
+		<%= render partial: 'shared/clients',
+			locals: {
+				clients: @clients
+			} %>
 		<h3>
-			<%= link_to '+ Add New Client', new_client_path, class: 'add-new' %>
+			<%= render partial: 'shared/add',
+				locals: {
+					path: new_client_path,
+					item_to_add: 'New Client'
+				} %>
 		</h3>
 	</div>
   <%= render 'shared/back' %>

@@ -1,0 +1,6 @@
+<% reports.each do |report| %>
+  <% include_glyph = include_glyph.nil? ? true : false %>
+  <h3>
+    <%= raw show_report(report, include_glyph) %>
+  </h3>
+<% end %> 
