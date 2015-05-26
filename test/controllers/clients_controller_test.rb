@@ -50,8 +50,10 @@ class ClientsControllerTest < ActionController::TestCase
 
   test "should create new client" do
     setup_user
+    sign_in @user
+
     assert_difference('Client.count') do
-      post :create, client: {name: 'A client'}
+      post :create, client: {name: 'A client', }
     end
     assert_redirected_to client_path(assigns(:client))
   end 

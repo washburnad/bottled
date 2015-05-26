@@ -2,7 +2,7 @@
 	<h1>New Collaboration for <%= @client.name %></h1>
     <%= simple_form_for :collaboration, :url => user_client_collaborations_path(current_user, @client) do |f| %>
       <%= f.input :user_id, label: false, placeholder: 'Add collaborator id or email' %>
-      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+      <%= f.submit 'Save', :class => 'add-new' %>
     <% end %>
 
   <%= render 'shared/back' %>

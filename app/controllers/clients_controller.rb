@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
 	end
 
 	def show
-		@client = Client.includes(:projects).find params[:id]
+		@client = Client.includes(:projects, :collaborations).find params[:id]
 		@collaborators = @client.collaborators
 		@projects = @client.projects
 	end
@@ -59,7 +59,7 @@ class ClientsController < ApplicationController
 
 
 	def require_authorized
-		if current_client.user != current_user
+		unless current_client.user == current_user || current_client.collaborator?(current_user)
 			redirect_to root_path, alert: 'Current user does not have access to that page.'
 		end
 	end
