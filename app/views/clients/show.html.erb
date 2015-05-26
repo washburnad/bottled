@@ -3,14 +3,49 @@
 		<%= link_to @client.name, client_projects_path(@client) %>
 		<span class="glyphicon" style=" color: <%= @client.glyph_color %>;	"><%= raw @client.glyph_id %></span>
 	</h1>
-	<ul>
-		<li>Contact Name:<%= @client.contact_name %></li>
-		<li>Title:<%= @client.contact_title %></li>
-		<li>Email:<%= @client.contact_email %></li>
-		<li>Phone:<%= @client.contact_phone %></li>
-	</ul>
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= link_to 'Edit', edit_client_path(@client), :class => 'btn btn-primary' %>
-	<%= link_to 'New Project', new_client_project_path(@client), :class => 'btn btn-primary' %>
-	<%= link_to 'Projects', client_projects_path(@client), :class => 'btn btn-primary' %>
+	<div class='col-xs-12'>
+		<div class='col-xs-12 col-sm-6'>
+			<h2 class='highlight'>Projects</h2>
+				<div class='item-box'>	
+					<%= render partial: 'shared/projects',
+					  locals: {
+					    projects: @projects,
+					    include_glyph: false
+					  } %>
+					<h3>
+						<%= render  partial: 'shared/add', 
+												locals: {
+													path: new_client_project_path(current_client),
+													item_to_add: 'New Project'
+												} %>
+					</h3>
+				</div>
+		</div>
+		<div class='col-xs-12 col-sm-6'>
+			<h2 class='highlight'>Client Info</h2>
+			<ul>
+				<li>Contact Name: <%= @client.contact_name %></li>
+				<li>Title: <%= @client.contact_title %></li>
+				<li>Email: <%= @client.contact_email %></li>
+				<li>Phone: <%= @client.contact_phone %></li>
+		    <li>Hourly Bill Rate: <%= number_to_currency(@client.billing_rate) %></li>
+			</ul>
+			<% if @collaborators.present? %>
+				<h2 class='highlight'>Collaborators</h2>
+				<ul>
+					<% @collaborators.each do |c| %>
+						<li><%= c.name %> <%= c.email %></li>
+					<% end %>
+				</ul>
+			<% end %>
+
+			<h3>
+				<%= render  partial: 'shared/edit', 
+										locals: { path: edit_client_path(@client) } %>
+			</h3>
+		</div>
+	</div>
+	<div class='col-xs-12'>
+		<%= render 'shared/back' %>
+	</div>
 </div>

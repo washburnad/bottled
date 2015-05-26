@@ -3,15 +3,40 @@
 		<%= link_to current_client.name, client_projects_path(current_client) %>
 		<span class="glyphicon" style=" color: <%= current_client.glyph_color %>;	"><%= raw current_client.glyph_id %></span>
 	</h1>
-	<h2 class='highlight'><%= link_to @project.name, project_tasks_path(@project) %></h2>
-	<ul>
-		<li>Project Name:<%= @project.name %></li>
-		<li>Description:<%= @project.description %></li>
-	</ul>
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= link_to 'Edit', edit_client_project_path(current_client, @project), :class => 'btn btn-primary' %>
-	<%= link_to 'New Project', new_client_project_path(current_client), :class => 'btn btn-primary' %>
-	<%= link_to 'Projects', client_projects_path(current_client), :class => 'btn btn-primary' %>
-	<%= link_to 'New Task', new_project_task_path(@project), :class => 'btn btn-primary' %>
-	<%= link_to 'Tasks', project_tasks_path(@project), :class => 'btn btn-primary' %>
+	<h2 class='highlight'>
+		<%= @project.name %>
+	</h2>
+	<div class='col-xs-12'>
+		<div class='col-xs-12 col-sm-6'>
+			<h2 class='highlight'>Tasks</h2>
+				<div class='item-box'>	
+				  <% @tasks.each do |task| %>
+			  		<h3><%= link_to task.name, project_task_path(@project, task) %></h3>
+			    <% end %>
+			    <h3>
+				    <%= render  partial: 'shared/add', 
+				    						locals: {
+				    							path: new_project_task_path(@project),
+				    							item_to_add: 'New Task'
+				    						} %>
+					</h3>
+				</div>
+		</div>
+		<div class='col-xs-12 col-sm-6'>
+			<h2 class='highlight'>Project Info</h2>
+			<ul>
+				<li>Project Name:<%= @project.name %></li>
+				<li>Description:<%= @project.description %></li>
+			</ul>
+				<h3>
+					<%= render  partial: 'shared/edit', 
+										locals: {
+											path: edit_client_project_path(current_client,@project) 
+										} %>
+			  </h3>
+		</div>
+	</div>
+	<div class='col-xs-12'>
+		<%= render 'shared/back' %>
+	</div>
 </div>
