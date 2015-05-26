@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 	before_action :require_authorized, only: [ :show, :edit, :update]
 
 	def index
-		@clients = current_user.clients.to_a
+		@clients = current_user.all_clients
 	end
 
 	def new
@@ -32,6 +32,9 @@ class ClientsController < ApplicationController
 	def update
 		@client = Client.find(params[:id])
 		@client.update_attributes(client_params)
+		collaborator = Client.collaborating_user(collaboration_params)
+		@client.add_collaborator(collaborator)
+
 		if @client.valid?
 			redirect_to client_path(@client)
 		else
@@ -42,7 +45,11 @@ class ClientsController < ApplicationController
 	private
 
 	def client_params
-		params.require(:client).permit(:name, :contact_name, :contact_email, :contact_title, :contact_phone, :glyph_id, :glyph_color)
+		params.require(:client).permit(:name, :contact_name, :contact_email, :contact_title, :contact_phone, :glyph_id, :glyph_color, :billing_rate)
+	end
+
+	def collaboration_params
+		params.require(:collaboration).permit(:collaborator_string)
 	end
 
 	helper_method :current_client

@@ -1,0 +1,6 @@
+<% clients.each do |client| %>
+  <% include_glyph = include_glyph.nil? ? true : false %>
+  <h3>
+    <%= raw show_client(client, include_glyph) %>
+  </h3>
+<% end %> 

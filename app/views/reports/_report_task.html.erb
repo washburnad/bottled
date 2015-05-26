@@ -1,0 +1,19 @@
+<% task ||= @task %>
+<li id='task<%= task.id %>' class='task'>
+  <span class='toggle-children'>
+    <input type='checkbox' ng-model='task<%= task.id %>' />
+  </span>
+  <span class='name'>&nbsp;<%= task.name %></span>
+  <span class='description'>&nbsp;</span>
+  <span class='duration'><%= task.duration %></span>
+  <span class='amount'></span>
+  <span class='subtotal'>
+    &nbsp;<%= Reports.currency(task.amount_billable) %>
+  </span>
+</li>
+<ul ng-show='task<%= task.id %>'>
+  <% task.events.each do |event| %>
+    <%= render partial: 'report_event', 
+    locals: { event: event } %>
+  <% end %>
+</ul>

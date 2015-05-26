@@ -1,0 +1,8 @@
+<li id='event<%= event.id %>' class='event'>
+  <span class='toggle-children'>&nbsp;</span>
+  <span class='name'>&nbsp;<%= event.name %></span>
+  <span class='description'>&nbsp;<%= event.description %></span>
+  <span class='duration'>&nbsp;<%= event.duration %></span>
+  <span class='amount'>&nbsp;<%= Reports.currency(event.amount_billable)%></span>
+  <span class='subtotal'>&nbsp;</span>
+</li>

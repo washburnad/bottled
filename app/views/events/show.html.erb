@@ -1,17 +1,16 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'><%= link_to current_client.name, client_projects_path(current_client) %></h1>
+	<h1><%= link_to current_client.name, client_projects_path(current_client) %></h1>
 	<h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
 	<h2 class='highlight'><%= link_to current_task.name, project_task_path(current_project, current_task) %></h2>
 	
 	<%= simple_form_for @event, :url => task_event_path(current_task, @event), :method => :put do |f| %>
 		
 		<%= f.input  :name %></li>
-		Duration: <%= time_in_h_mm(@event.duration) %><br />
-		Start Time: <%= time_to_string(@event.start_time) %><br />
-		
-		
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= f.submit 'Save', :class => 'btn btn-primary' %>
+		Duration: <%= number_with_precision(@event.duration, precision: 2) %> hours<br />
+		Date: <%= timeUTC_to_date(@event.start_time) %><br />
+		Start Time: <%= timeUTC_to_time(@event.start_time) %><br />
+	<%= f.submit 'Save', :class => 'btn btn-primary' %>		
+  <%= render 'shared/back' %>
 	<% end %>
 	
 </div>

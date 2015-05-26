@@ -67,7 +67,7 @@ class ClientsControllerTest < ActionController::TestCase
 
   test "should update client" do
     setup_user_and_client
-    put :update, id: @client.id, client: {name: 'New name'}
+    put :update, id: @client.id, client: {name: 'New name'}, collaboration: {collaborating_user: @user2.id}
     @client.reload
     
     assert_equal 'New name', @client.name
@@ -78,7 +78,7 @@ class ClientsControllerTest < ActionController::TestCase
     setup_user_and_client
     switch_user
 
-    put :update, id: @client.id, client: {name: 'New name'}
+    put :update, id: @client.id, client: {name: 'New name'}, collaboration: {collaborating_user: @user2.id}
     @client.reload
     
     assert_not_equal 'New name', @client.name
@@ -98,6 +98,6 @@ class ClientsControllerTest < ActionController::TestCase
   def setup_user_and_client
     setup_user
     @client = FactoryGirl.create(:client, user_id: @user.id)
-    
+    @user2 = FactoryGirl.create(:user)
   end
 end

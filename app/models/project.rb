@@ -7,4 +7,16 @@ class Project < ActiveRecord::Base
   has_many :reports, as: :reportable
 
 	validates :name, :presence => true
+
+  def billing_rate
+    super || client.billing_rate
+  end
+
+  def amount_billable
+    events.to_a.sum(&:amount_billable)
+  end
+
+  def duration
+    events.to_a.sum(&:duration)
+  end
 end

@@ -12,6 +12,7 @@ FactoryGirl.define do
     sequence :name do |n|
       "Client#{n}"
     end
+    billing_rate BigDecimal.new("10.00")
   end
 
   factory :project do
@@ -26,8 +27,18 @@ FactoryGirl.define do
     end
   end
 
+  factory :event do 
+    sequence :name do |n|
+      "Event#{n}"
+    end
+    start_time Time.now
+  end
+
   factory :report do 
-    
+    name 'Report name'
   end 
 
+  factory :collaboration do 
+
+  end
 end

@@ -1,18 +1,22 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'>
-		<%= link_to current_client.name, client_projects_path(current_client) %>
+	<h1>
+		<%= link_to current_client.name, client_path(current_client) %>
 		<span class="glyphicon" style=" color: <%= current_client.glyph_color %>;	"><%= raw current_client.glyph_id %></span>
 	</h1>
 	<h2 class='highlight'><%= link_to current_project.name, project_tasks_path(current_project) %></h2>
 	<h2 class='highlight'><%= link_to @task.name, task_events_path(@task) %></h2>
-	<h2>New event name <input id='name' name='name' type='text' value="<%= time_to_string(Time.new) %>"/>	</h2>
+	<h2>New event</h2>
+	<h3>Event name <input id='name' name='name' type='text' value="<%= timeUTC_to_date_time(Time.new) %>"/>	</h3>
 	
-	<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
-	<%= link_to 'Edit', edit_project_task_path(current_project, @task), :class => 'btn btn-primary' %>
-	<%= link_to 'New Task', new_project_task_path(current_project), :class => 'btn btn-primary' %>
-	<%= link_to 'Tasks', project_tasks_path(current_project), :class => 'btn btn-primary' %>
+
 	<%= link_to 'Events', task_events_path(@task), :class => 'btn btn-primary' %>
 	<%= link_to 'Start Task', '#', :id => 'start', :class => 'btn btn-primary', 'data-create-url' => task_events_path(@task) %>
+
+	<%= render partial: 'shared/back' %>
+	<h3><%= render partial: 'shared/edit', 
+		locals: {
+			path: edit_project_task_path(current_project, @task)
+		} %></h3>
 	
 </div>
 

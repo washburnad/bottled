@@ -1,6 +1,8 @@
 Bottled::Application.routes.draw do
   devise_for :users
-  root 'home#index'
+  root 'home#about'
+  get 'index', to: 'home#index'
+  get 'about', to: 'home#about'
   resources :reports
   resources :clients do
     resources :projects
@@ -16,7 +18,13 @@ Bottled::Application.routes.draw do
   resources :users, :only => [] do
     resources :projects, :only => [:index], :to => 'users#project_index'
     resources :tasks, :only => [:index], :to => 'users#task_index'
+    resources :collaborations, :only => [:index, :destroy]
+    resources :clients, :only => [] do
+      resources :collaborations, :only => [:new, :create]
+    end
   end
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

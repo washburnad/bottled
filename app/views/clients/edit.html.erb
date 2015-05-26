@@ -1,5 +1,5 @@
 <div class='float-box col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2'>
-	<h1 class='highlight'>Edit Client</h1>
+	<h1>Edit Client</h1>
 	<%= simple_form_for @client, :url => client_path(@client), :method => :put do |f| %>
 		<input type='radio' name='client[glyph_id]' value='&#x2709;' /><span class='glyphicon'>&#x2709;</span>
 		<input type='radio' name='client[glyph_id]' value='&#xE022;' /><span class='glyphicon'>&#xE022;</span>
@@ -14,9 +14,10 @@
 		<%= f.input :contact_title, label: false, placeholder: 'Contact Title' %>
 		<%= f.input :contact_email, label: false, placeholder: 'Contact Email' %>
 		<%= f.input :contact_phone, label: false, placeholder: 'Contact Phone' %>
+    <%= f.input :billing_rate, label: false, placeholder: 'Hourly Billing Rate' %>
 		<%= f.input :glyph_color, label: false, placeholder: 'Glyphicon color (hex)', :as => :minicolors %><br />
-		<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+		<input type='text' name='collaboration[collaborator_string]' placeholder='Add collaborator id or email' />
 		<%= f.submit 'Save', :class => 'btn btn-primary' %>
-
+	  <%= render 'shared/back' %>
 	<% end %>
 </div>

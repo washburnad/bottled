@@ -15,6 +15,6 @@
 //= require jquery.minicolors.simple_form
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require angular
 //= require_tree .
-
 

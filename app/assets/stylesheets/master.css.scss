@@ -1,7 +1,8 @@
 
+
 /*  STRUCTURAL */
-$dark-blue: #48516a;
-$light-blue: #607196;
+$dark-blue: #626f91;
+$light-blue: #7286b2;
 $white: #ffffff;
 $gray: #888888;
 $black: #000000;
@@ -21,7 +22,7 @@ body {
 	background-size: 100%;
 
 	font-family: 'Armata-Regular', sans-serif;
-	color: #607196;
+	color: $light-blue;
 
 }
 
@@ -40,8 +41,11 @@ nav.navbar-default {
 	.navbar-nav > li > a {
 		color: $light-blue;
 	}
-	
-	
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	color: $dark-blue;
 }
 
 /* GLOBAL STYLES */
@@ -53,6 +57,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-size: 24px;
+	color: $white;
 }
 
 h2 {
@@ -60,7 +65,14 @@ h2 {
 }
 
 h3 {
-	font-size: 14px;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	height: 1.3em;
+	overflow: hidden;
+	a.add-new {
+		color: $white;
+		font-style: italic;
+	}
 }
 
 ul {
@@ -68,15 +80,13 @@ ul {
 }
 
 a {
-	color: $light-blue;
+	color: inherit;
 
 	&:hover {
+		margin-left: 2px;
 		color: $dark-blue;
+		text-decoration: none;
 	}	
-}
-
-a:hover {
-	text-decoration: none;
 }
 
 .highlight,
@@ -94,6 +104,7 @@ a:hover {
 	color: $white;
 	background-color: $dark-blue;
 	border-color: $light-blue;
+	margin-left: 0;
 }
 
 select,
@@ -119,15 +130,6 @@ input[type='date'] {
 :focus {
 	outline: none;
 }
-
-/*.nav-link {
-	font-size: 16px;
-	color: #607196;
-	&:hover {
-		color: #48516a;
-	}
-
-}*/
 
 .vert-list {
 	margin-top: 5px;
@@ -175,7 +177,6 @@ h1 .h1-small {
 			color: $dark-blue;
 		}
 	}
-
 }
 
 .timer-box {
@@ -245,7 +246,7 @@ h1 .h1-small {
 		}
 
 		.time {
-			width: auto;
+			width: 150px;
 			text-align: center;
 		}
 
@@ -270,6 +271,10 @@ form{
 			}
 		}
 
+		&[type='submit'] {
+			margin: 2px 0;
+		}
+
 
 	}
 
@@ -283,6 +288,10 @@ form{
 
 	.glyphicon {
 		font-size: 200%;
+	}
+
+	a .glyphicon {
+		font-size: 100%;
 	}
 
 }
