@@ -56,6 +56,8 @@ group :test do
 
   #factory girl
   gem "factory_girl_rails", "~> 4.0"
+
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
